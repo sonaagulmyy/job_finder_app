@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:job_finder/constants/app_colors.dart';
-import 'package:job_finder/constants/app_fonts.dart';
+import 'package:job_finder/app_fonts.dart';
 import 'package:job_finder/home_page.dart';
 
 class FillProfileInfoPage extends StatefulWidget {
@@ -264,7 +264,7 @@ class _FillProfileInfoPageState extends State<FillProfileInfoPage> {
                 height: 40,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  color: AppColors.buttonColor,
+                 gradient: AppColors.appGradient
                 ),
                 child: Center(
                   child: Text(

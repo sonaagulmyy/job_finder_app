@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_finder/constants/app_colors.dart';
-import 'package:job_finder/constants/app_fonts.dart';
-import 'package:job_finder/constants/select_jobtype_page.dart';
+import 'package:job_finder/app_fonts.dart';
+import 'package:job_finder/select_jobtype_page.dart';
 
 class SelectRegionPage extends StatefulWidget {
   const SelectRegionPage({super.key});
@@ -187,7 +187,7 @@ class _SelectRegionPageState extends State<SelectRegionPage> {
                   height: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    color: AppColors.buttonColor,
+                    gradient: AppColors.appGradient
                   ),
                   child: Center(
                     child: Text(

@@ -3,8 +3,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_finder/constants/app_colors.dart';
-import 'package:job_finder/constants/app_fonts.dart';
-import 'package:job_finder/constants/select_experience_page.dart';
+import 'package:job_finder/app_fonts.dart';
+import 'package:job_finder/select_experience_page.dart';
 
 class SelectJobtypePage extends StatefulWidget {
   const SelectJobtypePage({super.key});
@@ -102,7 +102,7 @@ class _SelectJobtypePageState extends State<SelectJobtypePage> {
                 height: 40,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  color: AppColors.buttonColor,
+                  gradient: AppColors.appGradient
                 ),
                 child: Center(
                   child: Text(

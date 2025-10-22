@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_finder/constants/app_colors.dart';
-import 'package:job_finder/constants/app_fonts.dart';
-import 'package:job_finder/constants/fill_profile_info_page.dart';
+import 'package:job_finder/app_fonts.dart';
+import 'package:job_finder/fill_profile_info_page.dart';
 
 class SelectExperiencePage extends StatefulWidget {
   const SelectExperiencePage({super.key});
@@ -84,7 +84,7 @@ class _SelectExperiencePageState extends State<SelectExperiencePage> {
                 height: 40,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  color: AppColors.buttonColor,
+                  gradient: AppColors.appGradient
                 ),
                 child: Center(
                   child: Text(
