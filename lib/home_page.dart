@@ -10,7 +10,11 @@ import 'package:job_finder/bloc/job_state.dart';
 import 'package:job_finder/constants/app_colors.dart';
 import 'package:job_finder/job_card.dart';
 import 'package:job_finder/job_details.dart';
+import 'package:job_finder/models/job_model.dart';
 import 'package:job_finder/notifications_page.dart';
+import 'package:job_finder/profile_page.dart';
+import 'package:job_finder/saved_jobs.dart';
+import 'package:job_finder/see_all_jobs_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,8 +24,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  List<Job> filteredJobs = [];
   int selectedIndex = 0;
-  int currentIndex = 0;
   List<String> jobs = [
     "All",
     "Accounting and Finance",
@@ -35,6 +39,25 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     "Hairdresser",
     "Driver",
   ];
+
+
+
+  void filterJobs(String query, List<Job> allJobs) {
+    final filtered = allJobs.where((job) {
+      final title = job.position.toLowerCase();
+      final company = job.company.toLowerCase();
+      final location = job.location.toLowerCase();
+      final searchLower = query.toLowerCase();
+
+      return title.contains(searchLower) ||
+          company.contains(searchLower) ||
+          location.contains(searchLower);
+    }).toList();
+
+    setState(() {
+      filteredJobs = filtered;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +87,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               if (state is JobLoading) {
                 return Center(child: CircularProgressIndicator());
               } else if (state is JobLoaded) {
+                if (filteredJobs.isEmpty) {
+                  filteredJobs = state.jobs;
+                }
                 return SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,6 +174,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                       padding: EdgeInsets.all(4),
                                       child: Icon(Icons.search),
                                     ),
+                                    onChanged: (value) {
+                                      filterJobs(value, state.jobs);
+                                    },
                                   ),
                                 ),
                               ),
@@ -170,12 +199,19 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             ),
                             SizedBox(width: 130),
                             Expanded(
-                              child: Text(
-                                "See all",
-                                style: TextStyle(
-                                  fontFamily: AppFonts.primaryFont,
-                                  color: AppColors.buttonColor,
-                                  fontSize: 16,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(context, CupertinoPageRoute(builder: (context)=>BlocProvider(
+                                    create: (context) => JobBloc()..add(LoadJobs()),
+                                    child: SeeAllJobsPage())));
+                                },
+                                child: Text(
+                                  "See all",
+                                  style: TextStyle(
+                                    fontFamily: AppFonts.primaryFont,
+                                    color: AppColors.buttonColor,
+                                    fontSize: 16,
+                                  ),
                                 ),
                               ),
                             ),
@@ -193,7 +229,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   padding: const EdgeInsets.only(left: 10),
                                   child: GestureDetector(
                                     onTap: () {
-                                      Navigator.push(context, CupertinoPageRoute(builder: (context)=>JobDetails(job: job)));
+                                      Navigator.push(
+                                        context,
+                                        CupertinoPageRoute(
+                                          builder: (context) =>
+                                              JobDetails(job: job),
+                                        ),
+                                      );
                                     },
                                     child: JobCard(
                                       jobdata: job,
@@ -220,12 +262,20 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             ),
                             SizedBox(width: 210),
                             Flexible(
-                              child: Text(
-                                "See all",
-                                style: TextStyle(
-                                  fontFamily: AppFonts.primaryFont,
-                                  color: AppColors.buttonColor,
-                                  fontSize: 16,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(context, CupertinoPageRoute(builder:(context)=> BlocProvider(
+                                    create: (context) => JobBloc(),
+                                    child: SeeAllJobsPage(),
+                                  )));
+                                },
+                                child: Text(
+                                  "See all",
+                                  style: TextStyle(
+                                    fontFamily: AppFonts.primaryFont,
+                                    color: AppColors.buttonColor,
+                                    fontSize: 16,
+                                  ),
                                 ),
                               ),
                             ),
@@ -290,14 +340,20 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         child: ListView.builder(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: state.jobs.length,
+                          itemCount: filteredJobs.length,
                           itemBuilder: (context, index) {
-                            final job = state.jobs[index];
+                            final job = filteredJobs[index];
                             return Padding(
                               padding: const EdgeInsets.only(bottom: 10),
                               child: GestureDetector(
                                 onTap: () {
-                                  Navigator.push(context, CupertinoPageRoute(builder: (context)=>JobDetails(job: job)));
+                                  Navigator.push(
+                                    context,
+                                    CupertinoPageRoute(
+                                      builder: (context) =>
+                                          JobDetails(job: job),
+                                    ),
+                                  );
                                 },
                                 child: JobCard(
                                   jobdata: job,
@@ -317,26 +373,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 return SizedBox();
               }
             },
-          ),
-          bottomNavigationBar: BottomNavigationBar(
-            landscapeLayout: BottomNavigationBarLandscapeLayout.spread,
-            selectedItemColor: AppColors.buttonColor,
-            selectedLabelStyle: TextStyle(fontSize: 15),
-            unselectedLabelStyle: TextStyle(fontSize: 12),
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.home),
-                label: "Home",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.bookmark),
-                label: "Saved",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.person),
-                label: "Profile",
-              ),
-            ],
           ),
         ),
       ),
