@@ -28,7 +28,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         itemCount: 10,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.only(right: 10, left : 10, top: 10),
+            padding: const EdgeInsets.only(right: 10, left: 10, top: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -41,15 +41,27 @@ class _NotificationsPageState extends State<NotificationsPage> {
                         fontSize: 18,
                       ),
                     ),
-                    SizedBox(width: 120,),
-                    Container(
-                      height: 25,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(14),
-                        color: AppColors.buttonColor,
+                    SizedBox(width: 120),
+                    Expanded(
+                      child: Container(
+                        height: 25,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(14),
+                          color: AppColors.buttonColor,
+                        ),
+                        child: Center(
+                          child: Text(
+                            "New",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontFamily: AppFonts.primaryFont,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
                       ),
-                      child: Center(child: Text("New",style: TextStyle(color: Colors.white,fontSize: 14,fontFamily: AppFonts.primaryFont,fontWeight: FontWeight.bold),)),
                     ),
                   ],
                 ),
