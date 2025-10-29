@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:job_finder/constants/app_colors.dart';
 import 'package:job_finder/app_fonts.dart';
-import 'package:job_finder/home_page.dart';
 import 'package:job_finder/main_screen.dart';
 
 class FillProfileInfoPage extends StatefulWidget {

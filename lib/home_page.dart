@@ -12,8 +12,6 @@ import 'package:job_finder/job_card.dart';
 import 'package:job_finder/job_details.dart';
 import 'package:job_finder/models/job_model.dart';
 import 'package:job_finder/notifications_page.dart';
-import 'package:job_finder/profile_page.dart';
-import 'package:job_finder/saved_jobs.dart';
 import 'package:job_finder/see_all_jobs_page.dart';
 
 class HomePage extends StatefulWidget {
