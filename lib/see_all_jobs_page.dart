@@ -2,10 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:job_finder/app_fonts.dart';
-import 'package:job_finder/bloc/job_bloc.dart';
-import 'package:job_finder/bloc/job_event.dart';
-import 'package:job_finder/bloc/job_state.dart';
-import 'package:job_finder/constants/app_colors.dart';
+import 'package:job_finder/bloc/job_bloc/job_bloc.dart';
+import 'package:job_finder/bloc/job_bloc/job_event.dart';
+import 'package:job_finder/bloc/job_bloc/job_state.dart';
 import 'package:job_finder/job_card.dart';
 import 'package:job_finder/models/job_model.dart';
 
@@ -42,12 +41,6 @@ class _SeeAllJobsPageState extends State<SeeAllJobsPage> {
       create: (context) => JobBloc()..add(LoadJobs()),
       child: Scaffold(
         appBar: AppBar(
-          leading: GestureDetector(
-            child: Icon(Icons.arrow_back, color: AppColors.textColor),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
           title: CupertinoSearchTextField(
             onChanged: (value) {
               final jobs = context.read<JobBloc>().state;
@@ -110,7 +103,7 @@ class _SeeAllJobsPageState extends State<SeeAllJobsPage> {
                             left: 10,
                             right: 10,
                           ),
-                          child: JobCard(jobdata: job, logoColor: Colors.red),
+                          child: JobCard(job: job, logoColor: Colors.red,),
                         );
                       },
                     ),

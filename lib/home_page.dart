@@ -4,10 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:job_finder/app_fonts.dart';
-import 'package:job_finder/bloc/job_bloc.dart';
-import 'package:job_finder/bloc/job_event.dart';
-import 'package:job_finder/bloc/job_state.dart';
+import 'package:job_finder/bloc/job_bloc/job_bloc.dart';
+import 'package:job_finder/bloc/job_bloc/job_event.dart';
+import 'package:job_finder/bloc/job_bloc/job_state.dart';
 import 'package:job_finder/constants/app_colors.dart';
+import 'package:job_finder/database/database_helper.dart';
 import 'package:job_finder/job_card.dart';
 import 'package:job_finder/job_details.dart';
 import 'package:job_finder/models/job_model.dart';
@@ -37,8 +38,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     "Hairdresser",
     "Driver",
   ];
-
-
+  @override
+void initState() {
+  super.initState();
+  DatabaseHelper.instance.database; 
+}
 
   void filterJobs(String query, List<Job> allJobs) {
     final filtered = allJobs.where((job) {
@@ -236,7 +240,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                       );
                                     },
                                     child: JobCard(
-                                      jobdata: job,
+                                      job: job,
                                       logoColor: Colors.red,
                                     ),
                                   ),
@@ -320,9 +324,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontFamily: AppFonts.primaryFont,
-                                      color: isSelected
-                                          ? Colors.white
-                                          : Colors.black,
                                       fontSize: 14,
                                     ),
                                   ),
@@ -354,7 +355,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   );
                                 },
                                 child: JobCard(
-                                  jobdata: job,
+                                  job: job,
                                   logoColor: Colors.red,
                                 ),
                               ),

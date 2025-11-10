@@ -46,4 +46,15 @@ class Job {
       companyLogo: json['company_logo'] ?? '',
     );
   }
+  Map<String, dynamic> toMap() {
+  return {
+    'id': id,
+    'position': position,
+    'location': location,
+    'company': company,
+    'salaryMin': salaryMin,
+    'salaryMax': salaryMax,
+  };
+}
+
 }

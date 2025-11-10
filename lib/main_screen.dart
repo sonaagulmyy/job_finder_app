@@ -34,7 +34,7 @@ class _MainScreenState extends State<MainScreen> {
         currentIndex: selectedIndex,
         onTap: onItemTapped,
             landscapeLayout: BottomNavigationBarLandscapeLayout.spread,
-            selectedItemColor: AppColors.buttonColor,
+            selectedItemColor: AppColors.textColor,
             selectedLabelStyle: TextStyle(fontSize: 15),
             unselectedLabelStyle: TextStyle(fontSize: 12),
             items: [

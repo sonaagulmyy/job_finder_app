@@ -3,7 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:http/http.dart' as http;
 import 'job_event.dart';
 import 'job_state.dart';
-import '../models/job_model.dart';
+import '../../models/job_model.dart';
 
 class JobBloc extends Bloc<JobEvent, JobState> {
   JobBloc() : super(JobInitial()) {

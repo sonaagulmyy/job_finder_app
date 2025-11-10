@@ -19,12 +19,6 @@ class _JobDetailsState extends State<JobDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: GestureDetector(
-          child: Icon(Icons.arrow_back, color: AppColors.textColor),
-          onTap: () {
-            Navigator.pop(context);
-          },
-        ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 10),
