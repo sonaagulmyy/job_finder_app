@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_finder/app_fonts.dart';
+import 'package:job_finder/language_selection_page.dart';
 import 'package:job_finder/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -21,14 +23,19 @@ class SettingsPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          ListTile(
-            leading: Icon(Icons.language),
-            title: Text(
-              "Languages",
-              style: TextStyle(
-                fontFamily: AppFonts.primaryFont,
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context, CupertinoPageRoute(builder: (context)=>LanguageSelectionPage()));
+            },
+            child: ListTile(
+              leading: Icon(Icons.language),
+              title: Text(
+                "Languages",
+                style: TextStyle(
+                  fontFamily: AppFonts.primaryFont,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
               ),
             ),
           ),

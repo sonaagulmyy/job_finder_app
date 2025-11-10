@@ -1,0 +1,18 @@
+{
+  "settings":"Настройки",
+  "welcome":"Добро пожаловать",
+  "notifications":"Уведомления",
+  "letsFindYourDreamJob":"Найдите работу своей мечты",
+  "recommendations":"Рекомендации",
+  "recentJob":"Недавние",
+  "seeAll":"Посмотреть все",
+  "home":"Главный",
+  "saved":"Сохранено",
+  "profile":"Профиль",
+  "noSavedJobs":"Нет сохраненных вакансий",
+  "account":"Счет",
+  "languages":"Языки",
+  "privacy":"Конфиденциальность",
+  "darkMode":"Темный режим",
+  "logOut":"Выйти"
+}

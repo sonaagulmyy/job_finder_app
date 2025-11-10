@@ -1,0 +1,18 @@
+{
+  "settings":"Settings",
+  "welcome":"Welcome",
+  "notifications":"Notifications",
+  "letsFindYourDreamJob":"Let's find your dream job",
+  "recommendations":"Recommendations",
+  "recentJob":"Recent job",
+  "seeAll":"See all",
+  "home":"Home",
+  "saved":"Saved",
+  "profile":"Profile",
+  "noSavedJobs":"No Saved Jobs",
+  "account":"Account",
+  "languages":"Languages",
+  "privacy":"Privacy",
+  "darkMode":"Dark mode",
+  "logOut":"Log Out"
+}
