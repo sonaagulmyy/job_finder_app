@@ -85,9 +85,8 @@ class _SelectJobtypePageState extends State<SelectJobtypePage> {
               ],
             ),
           ),
-          SizedBox(height: 240),
           Padding(
-            padding: EdgeInsetsGeometry.only(left: 18, right: 18),
+            padding: EdgeInsetsGeometry.only(left: 70, right: 70,top: 40),
             child: GestureDetector(
               onTap: () {
                 Navigator.push(

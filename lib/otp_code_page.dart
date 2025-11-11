@@ -47,64 +47,64 @@ class _OtpCodePageState extends State<OtpCodePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.only(top: 20, left: 30, right: 30),
-          child: Column(
-            children: [
-              Text(
-                "Type the code",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24,
-                  fontFamily: AppFonts.primaryFont,
+      body: Padding(
+        padding: EdgeInsets.only(top: 20, left: 30, right: 30),
+        child: Column(
+          children: [
+            Text(
+              "Type the code",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+                fontFamily: AppFonts.primaryFont,
+              ),
+            ),
+            SizedBox(height: 5),
+            Text(
+              "Send the code ${widget.number} ",
+              style: TextStyle(
+                fontSize: 16,
+                fontFamily: AppFonts.primaryFont,
+                color: Colors.grey[600],
+              ),
+            ),
+            SizedBox(height: 50),
+            PinCodeTextField(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              appContext: context,
+              length: 4,
+              keyboardType: TextInputType.number,
+              enableActiveFill: true,
+              pinTheme: PinTheme(
+                shape: PinCodeFieldShape.box,
+                borderRadius: BorderRadius.circular(8),
+                fieldHeight: 60,
+                fieldWidth: 50,
+                selectedColor: AppColors.textColor,
+                activeColor: Colors.grey[300],
+                inactiveColor: Colors.grey[300],
+                inactiveFillColor: Colors.white,
+                activeFillColor: Colors.white,
+                selectedFillColor: Colors.white,
+              ),
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "Resend the code",
+                  style: TextStyle(fontFamily: AppFonts.primaryFont),
                 ),
-              ),
-              SizedBox(height: 5),
-              Text(
-                "Send the code ${widget.number} ",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontFamily: AppFonts.primaryFont,
-                  color: Colors.grey[600],
+                SizedBox(width: 3),
+                Text(
+                  "00:$remainingSeconds",
+                  style: TextStyle(fontFamily: AppFonts.primaryFont),
                 ),
-              ),
-              SizedBox(height: 50),
-              PinCodeTextField(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                appContext: context,
-                length: 4,
-                keyboardType: TextInputType.number,
-                enableActiveFill: true,
-                pinTheme: PinTheme(
-                  shape: PinCodeFieldShape.box,
-                  borderRadius: BorderRadius.circular(8),
-                  fieldHeight: 60,
-                  fieldWidth: 50,
-                  selectedColor: AppColors.textColor,
-                  activeColor: Colors.grey[300],
-                  inactiveColor: Colors.grey[300],
-                  inactiveFillColor: Colors.white,
-                  activeFillColor: Colors.white,
-                  selectedFillColor: Colors.white,
-                ),
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    "Resend the code",
-                    style: TextStyle(fontFamily: AppFonts.primaryFont),
-                  ),
-                  SizedBox(width: 3),
-                  Text(
-                    "00:$remainingSeconds",
-                    style: TextStyle(fontFamily: AppFonts.primaryFont),
-                  ),
-                ],
-              ),
-              SizedBox(height: 470),
-              GestureDetector(
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 70,left: 70,top: 60),
+              child: GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
@@ -132,8 +132,8 @@ class _OtpCodePageState extends State<OtpCodePage> {
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

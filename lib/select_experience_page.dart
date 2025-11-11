@@ -38,68 +38,69 @@ class _SelectExperiencePageState extends State<SelectExperiencePage> {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          ListView.builder(
-            itemCount: jobs.length,
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              final job = jobs[index];
-              final isSelected = selectedJobs.contains(job);
-              return CheckboxListTile(
-                title: Text(
-                  job,
-                  style: TextStyle(fontFamily: AppFonts.primaryFont),
-                ),
-                value: isSelected,
-                onChanged: (bool? value) {
-                  setState(() {
-                    if (value == true) {
-                      selectedJobs.add(job);
-                    } else {
-                      selectedJobs.remove(job);
-                    }
-                  });
-                },
-                controlAffinity: ListTileControlAffinity.leading,
-                activeColor: AppColors.buttonColor,
-              );
-            },
-          ),
-          SizedBox(height: 125),
-          Padding(
-            padding: EdgeInsetsGeometry.only(left: 18, right: 18),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  CupertinoPageRoute(
-                    builder: (context) => FillProfileInfoPage(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ListView.builder(
+              itemCount: jobs.length,
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                final job = jobs[index];
+                final isSelected = selectedJobs.contains(job);
+                return CheckboxListTile(
+                  title: Text(
+                    job,
+                    style: TextStyle(fontFamily: AppFonts.primaryFont),
                   ),
+                  value: isSelected,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      if (value == true) {
+                        selectedJobs.add(job);
+                      } else {
+                        selectedJobs.remove(job);
+                      }
+                    });
+                  },
+                  controlAffinity: ListTileControlAffinity.leading,
+                  activeColor: AppColors.buttonColor,
                 );
               },
-              child: Container(
-                width: double.infinity,
-                height: 40,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  gradient: AppColors.appGradient
-                ),
-                child: Center(
-                  child: Text(
-                    "continue",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontFamily: AppFonts.primaryFont,
+            ),
+            Padding(
+              padding: EdgeInsetsGeometry.only(left: 70, right: 70,top: 40),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                      builder: (context) => FillProfileInfoPage(),
+                    ),
+                  );
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    gradient: AppColors.appGradient
+                  ),
+                  child: Center(
+                    child: Text(
+                      "continue",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontFamily: AppFonts.primaryFont,
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
