@@ -14,11 +14,7 @@ import 'package:provider/provider.dart';
 class JobCard extends StatefulWidget {
   final Job job;
   final Color logoColor;
-  const JobCard({
-    super.key,
-    required this.logoColor,
-    required this.job,
-  });
+  const JobCard({super.key, required this.logoColor, required this.job});
 
   @override
   State<JobCard> createState() => _JobCardState();
@@ -33,7 +29,7 @@ class _JobCardState extends State<JobCard> {
     checkIfSaved();
   }
 
-   void checkIfSaved() async {
+  void checkIfSaved() async {
     bool saved = await DatabaseHelper.instance.isJobSaved(widget.job.id);
     setState(() {
       isSaved = saved;
@@ -105,8 +101,10 @@ class _JobCardState extends State<JobCard> {
               trailing: GestureDetector(
                 onTap: () async {
                   if (isSaved) {
-                    context.read<SavedJobsBloc>().add(DeleteSavedJobs(id: int.parse(widget.job.id)));
-                    setState(() =>isSaved=false);
+                    context.read<SavedJobsBloc>().add(
+                      DeleteSavedJobs(id: int.parse(widget.job.id)),
+                    );
+                    setState(() => isSaved = false);
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text("Removed from saved")),
                     );

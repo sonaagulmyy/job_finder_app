@@ -25,6 +25,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   List<Job> filteredJobs = [];
+  List<Job> allJobs = [];
+  bool _isSearching = false;
   int selectedIndex = 0;
   List<String> jobs = [
     "All",
@@ -45,7 +47,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     DatabaseHelper.instance.database;
   }
 
-  void filterJobs(String query, List<Job> allJobs) {
+  void filterJobs(String query) {
     final filtered = allJobs.where((job) {
       final title = job.position.toLowerCase();
       final company = job.company.toLowerCase();
@@ -123,8 +125,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   ),
                 );
               } else if (state is JobLoaded) {
-                if (filteredJobs.isEmpty) {
-                  filteredJobs = state.jobs;
+                if (allJobs.isEmpty) {
+                  allJobs = List.from(state.jobs);
+                  filteredJobs = List.from(allJobs);
                 }
                 return SingleChildScrollView(
                   child: Column(
@@ -211,7 +214,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                       child: Icon(Icons.search),
                                     ),
                                     onChanged: (value) {
-                                      filterJobs(value, state.jobs);
+                                      _isSearching = value.trim().isNotEmpty;
+                                      if (_isSearching) {
+                                        filterJobs(value);
+                                      } else {
+                                        setState(() {
+                                          filteredJobs = List.from(allJobs);
+                                        });
+                                      }
                                     },
                                   ),
                                 ),
@@ -262,10 +272,23 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         ),
                       ),
                       SizedBox(height: 10),
+                      if (_isSearching && filteredJobs.isEmpty)
+                        Center(
+                          child: Text(
+                            "Nothing found",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: AppFonts.primaryFont,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey
+                            ),
+                          ),
+                        )
+                      else
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
-                          children: state.jobs
+                          children: filteredJobs
                               .take(5)
                               .map(
                                 (job) => Padding(
@@ -380,32 +403,50 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         ),
                       ),
                       SizedBox(height: 15),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        child: ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: filteredJobs.length,
-                          itemBuilder: (context, index) {
-                            final job = filteredJobs[index];
-                            return Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    CupertinoPageRoute(
-                                      builder: (context) =>
-                                          JobDetails(job: job),
-                                    ),
-                                  );
-                                },
-                                child: JobCard(job: job, logoColor: Colors.red),
-                              ),
-                            );
-                          },
+                      if (_isSearching && filteredJobs.isEmpty)
+                        Container(
+                          height: 300,
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Nothing found",
+                            style:  TextStyle(
+                              fontSize: 18,
+                              fontFamily: AppFonts.primaryFont,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey
+                            ),
+                          ),
+                        )
+                      else
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: filteredJobs.length,
+                            itemBuilder: (context, index) {
+                              final job = filteredJobs[index];
+                              return Padding(
+                                padding: const EdgeInsets.only(bottom: 10),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      CupertinoPageRoute(
+                                        builder: (context) =>
+                                            JobDetails(job: job),
+                                      ),
+                                    );
+                                  },
+                                  child: JobCard(
+                                    job: job,
+                                    logoColor: Colors.red,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
                         ),
-                      ),
                     ],
                   ),
                 );

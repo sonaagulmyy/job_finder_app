@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -8,7 +9,7 @@ class JobCardSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Colors.grey.shade300,
+      baseColor: CupertinoColors.systemGrey5,
       highlightColor: Colors.grey.shade100,
       child: Container(
         width: width,
@@ -28,7 +29,7 @@ class JobCardSkeleton extends StatelessWidget {
                 height: 60,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.grey.shade300,
+                  color: CupertinoColors.systemGrey5,
                 ),
               ),
             ],

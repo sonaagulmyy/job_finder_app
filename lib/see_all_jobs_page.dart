@@ -6,6 +6,7 @@ import 'package:job_finder/bloc/job_bloc/job_bloc.dart';
 import 'package:job_finder/bloc/job_bloc/job_event.dart';
 import 'package:job_finder/bloc/job_bloc/job_state.dart';
 import 'package:job_finder/job_card.dart';
+import 'package:job_finder/job_card_skeleton.dart';
 import 'package:job_finder/models/job_model.dart';
 
 class SeeAllJobsPage extends StatefulWidget {
@@ -16,14 +17,17 @@ class SeeAllJobsPage extends StatefulWidget {
 }
 
 class _SeeAllJobsPageState extends State<SeeAllJobsPage> {
+  List<Job> allJobs = [];
   List<Job> filterJobs = [];
+  bool _isSearching = false;
 
-  void filtereJobs(String query, List<Job> allJobs) {
+  void filtereJobs(String query) {
+    final searchLower = query.toLowerCase();
+
     final filtered = allJobs.where((job) {
       final title = job.position.toLowerCase();
       final company = job.company.toLowerCase();
       final location = job.location.toLowerCase();
-      String searchLower = query.toLowerCase();
 
       return title.contains(searchLower) ||
           company.contains(searchLower) ||
@@ -43,9 +47,17 @@ class _SeeAllJobsPageState extends State<SeeAllJobsPage> {
         appBar: AppBar(
           title: CupertinoSearchTextField(
             onChanged: (value) {
-              final jobs = context.read<JobBloc>().state;
-              if (jobs is JobLoaded) {
-                filtereJobs(value, jobs.jobs);
+              final jobsState = context.read<JobBloc>().state;
+              if (jobsState is JobLoaded) {
+                _isSearching = value.trim().isNotEmpty;
+
+                if (_isSearching) {
+                  filtereJobs(value);
+                } else {
+                  setState(() {
+                    filterJobs = List.from(allJobs);
+                  });
+                }
               }
             },
           ),
@@ -53,16 +65,25 @@ class _SeeAllJobsPageState extends State<SeeAllJobsPage> {
         body: BlocBuilder<JobBloc, JobState>(
           builder: (context, state) {
             if (state is JobLoading) {
-              return Center(child: CircularProgressIndicator());
+              return SingleChildScrollView(
+                child: Column(
+                  children: List.generate(
+                    5,
+                    (index) => Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: JobCardSkeleton(width: 400),
+                    ),
+                  ),
+                ),
+              );
             } else if (state is JobLoaded) {
-              if (filterJobs.isEmpty && filterJobs != state.jobs) {
-                filterJobs = List.from(state.jobs);
+              if (allJobs.isEmpty || allJobs.length != state.jobs.length) {
+                allJobs = List.from(state.jobs);
+                if (!_isSearching) filterJobs = List.from(allJobs);
               }
-
-              if (filterJobs.isEmpty) {
+              if (_isSearching && filterJobs.isEmpty) {
                 return Center(child: Text("Nothing found"));
               }
-
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -103,7 +124,7 @@ class _SeeAllJobsPageState extends State<SeeAllJobsPage> {
                             left: 10,
                             right: 10,
                           ),
-                          child: JobCard(job: job, logoColor: Colors.red,),
+                          child: JobCard(job: job, logoColor: Colors.red),
                         );
                       },
                     ),
