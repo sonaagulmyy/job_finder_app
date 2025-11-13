@@ -142,57 +142,53 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             borderRadius: BorderRadius.circular(20),
                             gradient: AppColors.appGradient,
                           ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 19,
-                                  top: 19,
-                                ),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Welcome',
-                                      style: TextStyle(
-                                        fontFamily: AppFonts.primaryFont,
-                                        color: Colors.white,
-                                        fontSize: 25,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 20,),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Welcome',
+                                        style: TextStyle(
+                                          fontFamily: AppFonts.primaryFont,
+                                          color: Colors.white,
+                                          fontSize: 25,
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(width: 10),
-                                    Text(
-                                      "Maria!",
-                                      style: TextStyle(
-                                        fontFamily: AppFonts.primaryFont,
-                                        color: Colors.white,
-                                        fontSize: 25,
+                                      SizedBox(width: 10),
+                                      Text(
+                                        "Maria!",
+                                        style: TextStyle(
+                                          fontFamily: AppFonts.primaryFont,
+                                          color: Colors.white,
+                                          fontSize: 25,
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 7,
-                                  right: 135,
-                                ),
-                                child: Text(
-                                  "Let's find your dream job",
-                                  style: TextStyle(
-                                    fontFamily: AppFonts.primaryFont,
-                                    color: Colors.white,
-                                    fontSize: 16,
+                                    ],
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 12,
-                                  right: 12,
-                                  top: 20,
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    top: 7,
+                                    left: 8
+                                  ),
+                                  child: Text(
+                                    "Let's find your dream job",
+                                    style: TextStyle(
+                                      fontFamily: AppFonts.primaryFont,
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                    ),
+                                  ),
                                 ),
-                                child: Container(
+                                SizedBox(height: 20,),
+                                Container(
                                   width: 450,
                                   height: 50,
                                   margin: EdgeInsets.symmetric(
@@ -225,8 +221,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     },
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -243,28 +239,26 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 fontSize: 18,
                               ),
                             ),
-                            SizedBox(width: 130),
-                            Expanded(
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    CupertinoPageRoute(
-                                      builder: (context) => BlocProvider(
-                                        create: (context) =>
-                                            JobBloc()..add(LoadJobs()),
-                                        child: SeeAllJobsPage(),
-                                      ),
+                            Spacer(),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  CupertinoPageRoute(
+                                    builder: (context) => BlocProvider(
+                                      create: (context) =>
+                                          JobBloc()..add(LoadJobs()),
+                                      child: SeeAllJobsPage(),
                                     ),
-                                  );
-                                },
-                                child: Text(
-                                  "See all",
-                                  style: TextStyle(
-                                    fontFamily: AppFonts.primaryFont,
-                                    color: AppColors.buttonColor,
-                                    fontSize: 16,
                                   ),
+                                );
+                              },
+                              child: Text(
+                                "See all",
+                                style: TextStyle(
+                                  fontFamily: AppFonts.primaryFont,
+                                  color: AppColors.buttonColor,
+                                  fontSize: 16,
                                 ),
                               ),
                             ),
@@ -326,27 +320,25 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 fontSize: 18,
                               ),
                             ),
-                            SizedBox(width: 210),
-                            Flexible(
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    CupertinoPageRoute(
-                                      builder: (context) => BlocProvider(
-                                        create: (context) => JobBloc(),
-                                        child: SeeAllJobsPage(),
-                                      ),
+                            Spacer(),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  CupertinoPageRoute(
+                                    builder: (context) => BlocProvider(
+                                      create: (context) => JobBloc(),
+                                      child: SeeAllJobsPage(),
                                     ),
-                                  );
-                                },
-                                child: Text(
-                                  "See all",
-                                  style: TextStyle(
-                                    fontFamily: AppFonts.primaryFont,
-                                    color: AppColors.buttonColor,
-                                    fontSize: 16,
                                   ),
+                                );
+                              },
+                              child: Text(
+                                "See all",
+                                style: TextStyle(
+                                  fontFamily: AppFonts.primaryFont,
+                                  color: AppColors.buttonColor,
+                                  fontSize: 16,
                                 ),
                               ),
                             ),

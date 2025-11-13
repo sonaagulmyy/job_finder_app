@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 import 'package:job_finder/app_fonts.dart';
 import 'package:job_finder/constants/app_colors.dart';
@@ -50,42 +51,31 @@ class _ProfilePageState extends State<ProfilePage>
         child: Padding(
           padding: const EdgeInsets.all(15),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 135),
-                child: CircleAvatar(
-                  radius: 60,
-                  backgroundColor: Colors.grey[200],
-                ),
-              ),
-              SizedBox(height: 5),
-              Padding(
-                padding: const EdgeInsets.only(left: 100),
-                child: Column(
-                  children: [
-                    Text(
-                      "Viktor Kamov",
-                      style: TextStyle(
-                        fontFamily: AppFonts.poppinsBold,
-                        fontSize: 20,
-                      ),
+              CircleAvatar(radius: 60.r, backgroundColor: Colors.grey[200]),
+              SizedBox(height: 5.h),
+              Column(
+                children: [
+                  Text(
+                    "Viktor Kamov",
+                    style: TextStyle(
+                      fontFamily: AppFonts.poppinsBold,
+                      fontSize: 20,
                     ),
-                    Text(
-                      "Developer | UI/UX designer",
-                      style: TextStyle(fontFamily: AppFonts.primaryFont),
-                    ),
-                  ],
-                ),
+                  ),
+                  Text(
+                    "Developer | UI/UX designer",
+                    style: TextStyle(fontFamily: AppFonts.primaryFont),
+                  ),
+                ],
               ),
-              SizedBox(height: 15),
-              Padding(
-                padding: const EdgeInsets.only(left: 15),
-                child: Row(
-                  children: [
-                    Container(
-                      height: 50,
-                      width: 110,
+              SizedBox(height: 15.h),
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      height: 50.h,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(14),
                         border: Border.all(color: Colors.grey.shade300),
@@ -102,10 +92,11 @@ class _ProfilePageState extends State<ProfilePage>
                         ),
                       ),
                     ),
-                    SizedBox(width: 10),
-                    Container(
-                      height: 50,
-                      width: 110,
+                  ),
+                  SizedBox(width: 10.w),
+                  Expanded(
+                    child: Container(
+                      height: 50.h,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(14),
                         border: Border.all(color: Colors.grey.shade300),
@@ -135,10 +126,11 @@ class _ProfilePageState extends State<ProfilePage>
                         ),
                       ),
                     ),
-                    SizedBox(width: 10),
-                    Container(
-                      height: 50,
-                      width: 110,
+                  ),
+                  SizedBox(width: 10.w),
+                  Expanded(
+                    child: Container(
+                      height: 50.h,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(14),
                         border: Border.all(color: Colors.grey.shade300),
@@ -168,18 +160,21 @@ class _ProfilePageState extends State<ProfilePage>
                         ),
                       ),
                     ),
-                  ],
+                  ),
+                ],
+              ),
+              SizedBox(height: 15.h),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "About",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontFamily: AppFonts.poppinsBold,
+                  ),
                 ),
               ),
-              SizedBox(height: 15),
-              Text(
-                "About",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontFamily: AppFonts.poppinsBold,
-                ),
-              ),
-              SizedBox(height: 10),
+              SizedBox(height: 10.h),
               Text(
                 "Hello! My name is Viktor, and I'm a Frontend developer with 3 years of experience in Mobile applications, I specialize in creating useful apps.And also I'm working with FIgma for designing UI/UX",
                 style: TextStyle(
@@ -191,34 +186,51 @@ class _ProfilePageState extends State<ProfilePage>
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
               ),
-              SizedBox(height: 5),
-              Text("View all", style: TextStyle(color: Colors.blue)),
-              SizedBox(height: 10),
-              Wrap(
-                spacing: -10,
-                runSpacing: 8,
-                children: [
-                  Chip(
-                    label: Text("Developer"),
-                    backgroundColor: Colors.white,
-                    side: BorderSide(color: Colors.grey.shade300),
-                    shape: StadiumBorder(),
-                  ),
-                  Chip(
-                    label: Text("UI/UX designer"),
-                    backgroundColor: Colors.white,
-                    side: BorderSide(color: Colors.grey.shade300),
-                    shape: StadiumBorder(),
-                  ),
-                  Chip(
-                    label: Text("graphic designer"),
-                    backgroundColor: Colors.white,
-                    side: BorderSide(color: Colors.grey.shade300),
-                    shape: StadiumBorder(),
-                  ),
-                ],
+              SizedBox(height: 5.h),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text("View all", style: TextStyle(color: Colors.blue))),
+              SizedBox(height: 10.h),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Wrap(
+                  spacing: -14.w,
+                  runSpacing: 8,
+                  children: [
+                    Chip(
+                      label: Text("Developer"),
+                      backgroundColor: Colors.white,
+                      side: BorderSide(color: Colors.grey.shade300),
+                      shape: StadiumBorder(),
+                    ),
+                    Chip(
+                      label: Text("UI/UX designer"),
+                      backgroundColor: Colors.white,
+                      side: BorderSide(color: Colors.grey.shade300),
+                      shape: StadiumBorder(),
+                    ),
+                    Chip(
+                      label: Text("Figma"),
+                      backgroundColor: Colors.white,
+                      side: BorderSide(color: Colors.grey.shade300),
+                      shape: StadiumBorder(),
+                    ),
+                    Chip(
+                      label: Text("Graphic designing"),
+                      backgroundColor: Colors.white,
+                      side: BorderSide(color: Colors.grey.shade300),
+                      shape: StadiumBorder(),
+                    ),
+                     Chip(
+                      label: Text("Prototyping"),
+                      backgroundColor: Colors.white,
+                      side: BorderSide(color: Colors.grey.shade300),
+                      shape: StadiumBorder(),
+                    ),
+                  ],
+                ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 10.h),
               Padding(
                 padding: EdgeInsets.only(),
                 child: Container(
@@ -272,7 +284,7 @@ class _ProfilePageState extends State<ProfilePage>
                 ),
               ),
               SizedBox(
-                height: 300,
+                height: 300.h,
                 child: TabBarView(
                   controller: _tabController,
                   children: [
@@ -288,18 +300,18 @@ class _ProfilePageState extends State<ProfilePage>
                               fontFamily: AppFonts.poppinsBold,
                             ),
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 10.h),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  SizedBox(height: 5),
+                                  SizedBox(height: 5.h),
                                   _circleDot(),
                                   Container(
                                     width: 2,
-                                    height: 65,
+                                    height: 65.h,
                                     color: AppColors.textColor,
                                   ),
                                   _circleDot(),
@@ -319,7 +331,7 @@ class _ProfilePageState extends State<ProfilePage>
                                         fontSize: 16,
                                       ),
                                     ),
-                                    SizedBox(height: 4),
+                                    SizedBox(height: 4.h),
                                     Text(
                                       "St. Petersburg University of Information Technologies, Mechanics, and Optics",
                                       style: TextStyle(
@@ -357,7 +369,7 @@ class _ProfilePageState extends State<ProfilePage>
                               ),
                             ],
                           ),
-                          SizedBox(height: 8),
+                          SizedBox(height: 8.h),
                           Text(
                             "Skills:",
                             style: TextStyle(
@@ -365,21 +377,21 @@ class _ProfilePageState extends State<ProfilePage>
                               fontFamily: AppFonts.poppinsBold,
                             ),
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 10.h),
                           Row(
                             children: [
                               Column(
                                 children: [
-                                  SizedBox(height: 7),
+                                  SizedBox(height: 7.h),
                                   _circleDot(),
                                   Container(
-                                    height: 30,
+                                    height: 30.h,
                                     width: 2,
                                     color: AppColors.textColor,
                                   ),
                                   _circleDot(),
                                   Container(
-                                    height: 30,
+                                    height: 30.h,
                                     width: 2,
                                     color: AppColors.textColor,
                                   ),
@@ -398,7 +410,7 @@ class _ProfilePageState extends State<ProfilePage>
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  SizedBox(height: 15),
+                                  SizedBox(height: 15.h),
                                   Text(
                                     "Time management",
                                     style: TextStyle(
@@ -407,7 +419,7 @@ class _ProfilePageState extends State<ProfilePage>
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  SizedBox(height: 17),
+                                  SizedBox(height: 17.h),
                                   Text(
                                     "Attention to details",
                                     style: TextStyle(
@@ -429,33 +441,33 @@ class _ProfilePageState extends State<ProfilePage>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Experience",
+                            "Experience:",
                             style: TextStyle(
                               fontSize: 20,
                               fontFamily: AppFonts.poppinsBold,
                             ),
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 10.h),
                           Row(
                             children: [
                               Column(
                                 children: [
-                                  SizedBox(height: 7),
+                                  SizedBox(height: 7.h),
                                   _circleDot(),
                                   Container(
-                                    height: 60,
+                                    height: 60.h,
                                     width: 2,
                                     color: AppColors.textColor,
                                   ),
                                   _circleDot(),
                                   Container(
-                                    height: 60,
+                                    height: 60.h,
                                     width: 2,
                                     color: AppColors.textColor,
                                   ),
                                   _circleDot(),
                                   Container(
-                                    height: 60,
+                                    height: 60.h,
                                     width: 2,
                                     color: AppColors.textColor,
                                   ),
@@ -484,7 +496,7 @@ class _ProfilePageState extends State<ProfilePage>
                                       ),
                                     ],
                                   ),
-                                  SizedBox(height: 40),
+                                  SizedBox(height: 40.h),
                                   Row(
                                     children: [
                                       Text(
@@ -503,7 +515,7 @@ class _ProfilePageState extends State<ProfilePage>
                                       ),
                                     ],
                                   ),
-                                  SizedBox(height: 40),
+                                  SizedBox(height: 40.h),
                                   Row(
                                     children: [
                                       Text(
@@ -522,7 +534,7 @@ class _ProfilePageState extends State<ProfilePage>
                                       ),
                                     ],
                                   ),
-                                  SizedBox(height: 40),
+                                  SizedBox(height: 40.h),
                                   Row(
                                     children: [
                                       Text(
@@ -561,7 +573,7 @@ class _ProfilePageState extends State<ProfilePage>
   Widget _circleDot() {
     return Container(
       width: 10,
-      height: 10,
+      height: 10.h,
       decoration: BoxDecoration(
         color: AppColors.textColor,
         shape: BoxShape.circle,

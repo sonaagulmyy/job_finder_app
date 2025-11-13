@@ -41,24 +41,22 @@ class _NotificationsPageState extends State<NotificationsPage> {
                         fontSize: 18,
                       ),
                     ),
-                    SizedBox(width: 120),
-                    Expanded(
-                      child: Container(
-                        height: 25,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(14),
-                          color: AppColors.buttonColor,
-                        ),
-                        child: Center(
-                          child: Text(
-                            "New",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontFamily: AppFonts.primaryFont,
-                              fontWeight: FontWeight.bold,
-                            ),
+                    Spacer(),
+                    Container(
+                      height: 25,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(14),
+                        color: AppColors.buttonColor,
+                      ),
+                      child: Center(
+                        child: Text(
+                          "New",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontFamily: AppFonts.primaryFont,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
