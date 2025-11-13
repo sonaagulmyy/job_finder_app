@@ -10,6 +10,7 @@ import 'package:job_finder/bloc/job_bloc/job_state.dart';
 import 'package:job_finder/constants/app_colors.dart';
 import 'package:job_finder/database/database_helper.dart';
 import 'package:job_finder/job_card.dart';
+import 'package:job_finder/job_card_skeleton.dart';
 import 'package:job_finder/job_details.dart';
 import 'package:job_finder/models/job_model.dart';
 import 'package:job_finder/notifications_page.dart';
@@ -39,10 +40,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     "Driver",
   ];
   @override
-void initState() {
-  super.initState();
-  DatabaseHelper.instance.database; 
-}
+  void initState() {
+    super.initState();
+    DatabaseHelper.instance.database;
+  }
 
   void filterJobs(String query, List<Job> allJobs) {
     final filtered = allJobs.where((job) {
@@ -87,7 +88,40 @@ void initState() {
           body: BlocBuilder<JobBloc, JobState>(
             builder: (context, state) {
               if (state is JobLoading) {
-                return Center(child: CircularProgressIndicator());
+                return SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: JobCardSkeleton(width: 400),
+                      ),
+                      SizedBox(height: 10),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: List.generate(
+                            5,
+                            (index) => Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: JobCardSkeleton(width: 320),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Column(
+                        children: List.generate(
+                          5,
+                          (index) => Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: JobCardSkeleton(width: 400),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
               } else if (state is JobLoaded) {
                 if (filteredJobs.isEmpty) {
                   filteredJobs = state.jobs;
@@ -203,9 +237,16 @@ void initState() {
                             Expanded(
                               child: GestureDetector(
                                 onTap: () {
-                                  Navigator.push(context, CupertinoPageRoute(builder: (context)=>BlocProvider(
-                                    create: (context) => JobBloc()..add(LoadJobs()),
-                                    child: SeeAllJobsPage())));
+                                  Navigator.push(
+                                    context,
+                                    CupertinoPageRoute(
+                                      builder: (context) => BlocProvider(
+                                        create: (context) =>
+                                            JobBloc()..add(LoadJobs()),
+                                        child: SeeAllJobsPage(),
+                                      ),
+                                    ),
+                                  );
                                 },
                                 child: Text(
                                   "See all",
@@ -266,10 +307,15 @@ void initState() {
                             Flexible(
                               child: GestureDetector(
                                 onTap: () {
-                                  Navigator.push(context, CupertinoPageRoute(builder:(context)=> BlocProvider(
-                                    create: (context) => JobBloc(),
-                                    child: SeeAllJobsPage(),
-                                  )));
+                                  Navigator.push(
+                                    context,
+                                    CupertinoPageRoute(
+                                      builder: (context) => BlocProvider(
+                                        create: (context) => JobBloc(),
+                                        child: SeeAllJobsPage(),
+                                      ),
+                                    ),
+                                  );
                                 },
                                 child: Text(
                                   "See all",
@@ -354,10 +400,7 @@ void initState() {
                                     ),
                                   );
                                 },
-                                child: JobCard(
-                                  job: job,
-                                  logoColor: Colors.red,
-                                ),
+                                child: JobCard(job: job, logoColor: Colors.red),
                               ),
                             );
                           },
