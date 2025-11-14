@@ -106,14 +106,18 @@ class _JobCardState extends State<JobCard> {
                     );
                     setState(() => isSaved = false);
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text("Removed from saved")),
+                      SnackBar(
+                        backgroundColor: AppColors.backgroundColor.withOpacity(0.5),
+                        content: Text("Removed from saved!")),
                     );
                   } else {
                     await insertJob(widget.job.toMap());
                     setState(() => isSaved = true);
                     ScaffoldMessenger.of(
                       context,
-                    ).showSnackBar(SnackBar(content: Text("Job saved")));
+                    ).showSnackBar(SnackBar(
+                      backgroundColor: AppColors.backgroundColor.withOpacity(0.5),
+                      content: Text("Job saved!")));
                   }
                 },
                 child: Icon(

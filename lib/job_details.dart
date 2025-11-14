@@ -1,8 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_launcher_icons/xml_templates.dart';
 import 'package:job_finder/app_fonts.dart';
+import 'package:job_finder/bloc/saved_jobs_bloc/delete_saved_jobs_event.dart';
+import 'package:job_finder/bloc/saved_jobs_bloc/saved_jobs_bloc.dart';
 import 'package:job_finder/constants/app_colors.dart';
+import 'package:job_finder/database/database_helper.dart';
+import 'package:job_finder/database/functions.dart';
 import 'package:job_finder/models/job_model.dart';
+import 'package:provider/provider.dart';
 
 class JobDetails extends StatefulWidget {
   final Job job;
@@ -10,11 +16,37 @@ class JobDetails extends StatefulWidget {
 
   @override
   State<JobDetails> createState() => _JobDetailsState();
-  
+  final bool isAdded = false;
 }
 
 class _JobDetailsState extends State<JobDetails> {
-  
+  bool isSaved = false;
+
+  @override
+  void initState() {
+    super.initState();
+    checkIfSaved();
+  }
+
+  void checkIfSaved() async {
+    bool saved = await DatabaseHelper.instance.isJobSaved(widget.job.id);
+
+    setState(() {
+      isSaved = saved;
+    });
+  }
+
+  void toggleSave() async {
+    if (isSaved) {
+      await deleteJob(widget.job.id);
+    } else {
+      await insertJob(widget.job.toMap());
+    }
+    setState(() {
+      isSaved = !isSaved;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,8 +55,44 @@ class _JobDetailsState extends State<JobDetails> {
           Padding(
             padding: const EdgeInsets.only(right: 10),
             child: GestureDetector(
-              onTap: () {},
-              child: Icon(CupertinoIcons.bookmark, size: 22),
+              onTap: () async {
+                if (isSaved) {
+                  context.read<SavedJobsBloc>().add(
+                    DeleteSavedJobs(id: int.parse(widget.job.id)),
+                  );
+                  setState(() {
+                    isSaved = false;
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: AppColors.backgroundColor.withOpacity(
+                          0.5,
+                        ),
+                        content: Text('Removed from saved!'),
+                      ),
+                    );
+                  });
+                } else {
+                  await insertJob(widget.job.toMap());
+                  setState(() {
+                    isSaved = true;
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: AppColors.backgroundColor.withOpacity(
+                          0.5,
+                        ),
+                        content: Text('Job saved!'),
+                      ),
+                    );
+                  });
+                }
+              },
+              child: Icon(
+                isSaved
+                    ? CupertinoIcons.bookmark_fill
+                    : CupertinoIcons.bookmark,
+                color: isSaved ? Colors.blue : AppColors.textColor,
+                size: 22,
+              ),
             ),
           ),
         ],
@@ -146,12 +214,26 @@ class _JobDetailsState extends State<JobDetails> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 5,),
+                      SizedBox(height: 5),
                       Row(
-                       mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Posted ",style: TextStyle(fontFamily: AppFonts.primaryFont,color: Colors.grey,fontWeight: FontWeight.bold),),
-                          Text(widget.job.date.split('T').first,style: TextStyle(fontFamily: AppFonts.primaryFont,fontWeight: FontWeight.bold,color: Colors.grey),),
+                          Text(
+                            "Posted ",
+                            style: TextStyle(
+                              fontFamily: AppFonts.primaryFont,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            widget.job.date.split('T').first,
+                            style: TextStyle(
+                              fontFamily: AppFonts.primaryFont,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey,
+                            ),
+                          ),
                         ],
                       ),
                     ],
@@ -161,7 +243,14 @@ class _JobDetailsState extends State<JobDetails> {
             ),
             Padding(
               padding: EdgeInsetsGeometry.all(10),
-              child: Text("Description",style: TextStyle(color: AppColors.textColor,fontSize: 24,fontFamily: AppFonts.poppinsBold),),
+              child: Text(
+                "Description",
+                style: TextStyle(
+                  color: AppColors.textColor,
+                  fontSize: 24,
+                  fontFamily: AppFonts.poppinsBold,
+                ),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(right: 10, left: 10),
@@ -175,15 +264,28 @@ class _JobDetailsState extends State<JobDetails> {
                 maxLines: 15,
               ),
             ),
-            SizedBox(height: 40,),
-            Padding(padding: EdgeInsets.only(bottom: 10,left: 10,right: 10),
-            child: Container(
-              height: 50,
-              width: double.infinity,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
-              gradient: AppColors.appGradient),
-            child: Center(child: Text("Apply",style: TextStyle(color: Colors.white,fontSize: 20,fontFamily: AppFonts.primaryFont),),),
-            ),)
+            SizedBox(height: 40),
+            Padding(
+              padding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+              child: Container(
+                height: 50,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  gradient: AppColors.appGradient,
+                ),
+                child: Center(
+                  child: Text(
+                    "Apply",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontFamily: AppFonts.primaryFont,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
