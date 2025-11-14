@@ -1,6 +1,7 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_launcher_icons/xml_templates.dart';
 import 'package:job_finder/app_fonts.dart';
 import 'package:job_finder/bloc/saved_jobs_bloc/delete_saved_jobs_event.dart';
 import 'package:job_finder/bloc/saved_jobs_bloc/saved_jobs_bloc.dart';
