@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_finder/constants/app_colors.dart';
 import 'package:job_finder/app_fonts.dart';
+import 'package:job_finder/l10n/app_localizations.dart';
 import 'package:job_finder/select_jobtype_page.dart';
 
 class SelectRegionPage extends StatefulWidget {
@@ -16,14 +17,26 @@ class _SelectRegionPageState extends State<SelectRegionPage> {
 
   @override
   Widget build(BuildContext context) {
+    var lang=AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          "Select your region",
-          style: TextStyle(
-            fontFamily: AppFonts.primaryFont,
-            fontWeight: FontWeight.bold,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(70),
+        child: AppBar(
+          centerTitle: true,
+          title: Container(
+            alignment: Alignment.bottomLeft,
+            child: Text(
+              lang.selectYourRegion,
+              maxLines: 2,
+              softWrap: true,
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: AppFonts.primaryFont,
+                fontWeight: FontWeight.bold,
+                overflow: TextOverflow.ellipsis,
+                
+              ),
+            ),
           ),
         ),
       ),
@@ -50,7 +63,7 @@ class _SelectRegionPageState extends State<SelectRegionPage> {
             children: [
               ListTile(
                 title: Text(
-                  "Ashgabat",
+                  lang.ashgabat,
                   style: TextStyle(
                     fontFamily: AppFonts.primaryFont,
                     fontSize: 18,
@@ -70,7 +83,7 @@ class _SelectRegionPageState extends State<SelectRegionPage> {
               ),
               ListTile(
                 title: Text(
-                  "Balkan",
+                  lang.balkan,
                   style: TextStyle(
                     fontFamily: AppFonts.primaryFont,
                     fontSize: 18,
@@ -90,7 +103,7 @@ class _SelectRegionPageState extends State<SelectRegionPage> {
               ),
               ListTile(
                 title: Text(
-                  "Ahal",
+                  lang.ahal,
                   style: TextStyle(
                     fontFamily: AppFonts.primaryFont,
                     fontSize: 18,
@@ -110,7 +123,7 @@ class _SelectRegionPageState extends State<SelectRegionPage> {
               ),
               ListTile(
                 title: Text(
-                  "Mary",
+                  lang.mary,
                   style: TextStyle(
                     fontFamily: AppFonts.primaryFont,
                     fontSize: 18,
@@ -130,7 +143,7 @@ class _SelectRegionPageState extends State<SelectRegionPage> {
               ),
               ListTile(
                 title: Text(
-                  "Dashoguz",
+                  lang.dashoguz,
                   style: TextStyle(
                     fontFamily: AppFonts.primaryFont,
                     fontSize: 18,
@@ -150,7 +163,7 @@ class _SelectRegionPageState extends State<SelectRegionPage> {
               ),
               ListTile(
                 title: Text(
-                  "Lebap",
+                  lang.lebap,
                   style: TextStyle(
                     fontFamily: AppFonts.primaryFont,
                     fontSize: 18,
@@ -189,7 +202,7 @@ class _SelectRegionPageState extends State<SelectRegionPage> {
                 ),
                 child: Center(
                   child: Text(
-                    "continue",
+                    lang.continuee,
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,

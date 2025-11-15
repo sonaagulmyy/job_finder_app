@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_finder/constants/app_colors.dart';
 import 'package:job_finder/app_fonts.dart';
+import 'package:job_finder/l10n/app_localizations.dart';
 import 'package:job_finder/main_screen.dart';
 
 class FillProfileInfoPage extends StatefulWidget {
@@ -24,11 +25,12 @@ class _FillProfileInfoPageState extends State<FillProfileInfoPage> {
 
   @override
   Widget build(BuildContext context) {
+    var lang=AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "Fill your Profile",
+          lang.fillProfile,
           style: TextStyle(
             fontFamily: AppFonts.primaryFont,
             fontWeight: FontWeight.bold,
@@ -68,7 +70,7 @@ class _FillProfileInfoPageState extends State<FillProfileInfoPage> {
               TextField(
                 controller: name,
                 decoration: InputDecoration(
-                  labelText: "Name",
+                  labelText: lang.name,
                   labelStyle: TextStyle(
                     color: Colors.grey,
                     fontFamily: AppFonts.primaryFont,
@@ -89,7 +91,7 @@ class _FillProfileInfoPageState extends State<FillProfileInfoPage> {
               TextField(
                 controller: surname,
                 decoration: InputDecoration(
-                  labelText: "Surname",
+                  labelText: lang.surname,
                   labelStyle: TextStyle(
                     color: Colors.grey,
                     fontFamily: AppFonts.primaryFont,
@@ -110,7 +112,7 @@ class _FillProfileInfoPageState extends State<FillProfileInfoPage> {
               TextField(
                 controller: birthday,
                 decoration: InputDecoration(
-                  label: Text("Birthday"),
+                  label: Text(lang.birthday),
                   labelStyle: TextStyle(
                     color: Colors.grey,
                     fontFamily: AppFonts.primaryFont,
@@ -131,7 +133,7 @@ class _FillProfileInfoPageState extends State<FillProfileInfoPage> {
               TextField(
                 controller: email,
                 decoration: InputDecoration(
-                  label: Text("Email"),
+                  label: Text(lang.email),
                   labelStyle: TextStyle(
                     color: Colors.grey,
                     fontFamily: AppFonts.primaryFont,
@@ -180,20 +182,20 @@ class _FillProfileInfoPageState extends State<FillProfileInfoPage> {
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
                     isExpanded: true,
-                    hint: Text("Gender"),
+                    hint: Text(lang.gender),
                     value: selectedGender,
                     items: [
                       DropdownMenuItem(
                         value: "Female",
                         child: Text(
-                          "Female",
+                          lang.female,
                           style: TextStyle(fontFamily: AppFonts.primaryFont),
                         ),
                       ),
                       DropdownMenuItem(
                         value: "Male",
                         child: Text(
-                          "Male",
+                          lang.male,
                           style: TextStyle(fontFamily: AppFonts.primaryFont),
                         ),
                       ),
@@ -235,12 +237,12 @@ class _FillProfileInfoPageState extends State<FillProfileInfoPage> {
                                   backgroundColor: AppColors.buttonColor,
                                   child: Icon(CupertinoIcons.person,color: Colors.white,size: 40,),),
                                   SizedBox(height: 10,),
-                                Text("Congratulations!",style: TextStyle(
+                                Text(lang.congratulations,style: TextStyle(
                                   fontFamily: AppFonts.poppinsBold
                                 ),),
                               ],
                             ),
-                            content: Text("Your account is ready to use,you will be redirected to Home page ",style: TextStyle(fontFamily: AppFonts.primaryFont),textAlign: TextAlign.center,),
+                            content: Text(lang.accountReady,style: TextStyle(fontFamily: AppFonts.primaryFont),textAlign: TextAlign.center,),
                           ),
                         );
                       },
@@ -255,7 +257,7 @@ class _FillProfileInfoPageState extends State<FillProfileInfoPage> {
                     ),
                     child: Center(
                       child: Text(
-                        "continue",
+                        lang.continuee,
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.white,

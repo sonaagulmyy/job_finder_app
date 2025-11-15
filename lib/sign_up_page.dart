@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_finder/app_fonts.dart';
 import 'package:job_finder/constants/app_colors.dart';
+import 'package:job_finder/l10n/app_localizations.dart';
 import 'package:job_finder/otp_code_page.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -27,6 +28,7 @@ class _SignUpPageState extends State<SignUpPage>
 
   @override
   Widget build(BuildContext context) {
+    var lang=AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
@@ -38,7 +40,7 @@ class _SignUpPageState extends State<SignUpPage>
               Padding(
                 padding: const EdgeInsets.only( right: 20),
                 child: Text(
-                  "Sign-up",
+                  lang.signUp,
                   style: TextStyle(
                     color: AppColors.textColor,
                     fontFamily: AppFonts.poppinsBold,
@@ -72,10 +74,10 @@ class _SignUpPageState extends State<SignUpPage>
                     ),
                     tabs: [
                       Tab(
-                        child: Text("Phone", style: TextStyle(letterSpacing: 0.5)),
+                        child: Text(lang.phone, style: TextStyle(letterSpacing: 0.5)),
                       ),
                       Tab(
-                        child: Text("Email", style: TextStyle(letterSpacing: 0.5)),
+                        child: Text(lang.email, style: TextStyle(letterSpacing: 0.5)),
                       ),
                     ],
                   ),
@@ -127,7 +129,7 @@ class _SignUpPageState extends State<SignUpPage>
                               controller: password,
                               obscureText: !_isVisible,
                               decoration: InputDecoration(
-                                label: Text("Password"),
+                                label: Text(lang.password),
                                 labelStyle: TextStyle(
                                   fontFamily: AppFonts.primaryFont,
                                   color: Colors.grey[700],
@@ -175,7 +177,7 @@ class _SignUpPageState extends State<SignUpPage>
                             child: TextField(
                               controller: email,
                               decoration: InputDecoration(
-                                label: Text("Email"),
+                                label: Text(lang.email),
                                 labelStyle: TextStyle(
                                   color: Colors.grey[700],
                                   fontFamily: AppFonts.primaryFont,
@@ -202,7 +204,7 @@ class _SignUpPageState extends State<SignUpPage>
                               controller: password,
                               obscureText: !_isVisible,
                               decoration: InputDecoration(
-                                label: Text("Password"),
+                                label: Text(lang.password),
                                 labelStyle: TextStyle(
                                   fontFamily: AppFonts.primaryFont,
                                   color: Colors.grey[700],
@@ -258,7 +260,7 @@ class _SignUpPageState extends State<SignUpPage>
                     ),
                     child: Center(
                       child: Text(
-                        "Sign up",
+                        lang.signUp,
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: AppFonts.primaryFont,

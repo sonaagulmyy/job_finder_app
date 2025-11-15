@@ -192,6 +192,336 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Log Out'**
   String get logOut;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @letsJumpIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s jump in'**
+  String get letsJumpIn;
+
+  /// No description provided for @signIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get signIn;
+
+  /// No description provided for @dontHaveAnAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account?'**
+  String get dontHaveAnAccount;
+
+  /// No description provided for @signUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up'**
+  String get signUp;
+
+  /// No description provided for @phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get phone;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @typeTheCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Type the code'**
+  String get typeTheCode;
+
+  /// No description provided for @sentTheCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent the code:'**
+  String get sentTheCode;
+
+  /// No description provided for @resendTheCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend the code'**
+  String get resendTheCode;
+
+  /// No description provided for @selectYourRegion.
+  ///
+  /// In en, this message translates to:
+  /// **'Select your region'**
+  String get selectYourRegion;
+
+  /// No description provided for @continuee.
+  ///
+  /// In en, this message translates to:
+  /// **'continue'**
+  String get continuee;
+
+  /// No description provided for @selectJobType.
+  ///
+  /// In en, this message translates to:
+  /// **'Select job type'**
+  String get selectJobType;
+
+  /// No description provided for @chooseYourJobType.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your job type'**
+  String get chooseYourJobType;
+
+  /// No description provided for @chooseJobExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose whether you are looking for a job or you are company needs employee'**
+  String get chooseJobExplanation;
+
+  /// No description provided for @findAjobForYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Find a job for you'**
+  String get findAjobForYou;
+
+  /// No description provided for @wannaFindjob.
+  ///
+  /// In en, this message translates to:
+  /// **'I want to find a job for me'**
+  String get wannaFindjob;
+
+  /// No description provided for @findAnEmployee.
+  ///
+  /// In en, this message translates to:
+  /// **'Find an employee'**
+  String get findAnEmployee;
+
+  /// No description provided for @wannaFindEmployee.
+  ///
+  /// In en, this message translates to:
+  /// **'I want to find an employee'**
+  String get wannaFindEmployee;
+
+  /// No description provided for @selectYourExperience.
+  ///
+  /// In en, this message translates to:
+  /// **'Select your experience'**
+  String get selectYourExperience;
+
+  /// No description provided for @accountingAndFinance.
+  ///
+  /// In en, this message translates to:
+  /// **'Accounting and Finance'**
+  String get accountingAndFinance;
+
+  /// No description provided for @graphicDesign.
+  ///
+  /// In en, this message translates to:
+  /// **'Graphic design'**
+  String get graphicDesign;
+
+  /// No description provided for @mediaDesignCreative.
+  ///
+  /// In en, this message translates to:
+  /// **'Media,Design,Creative'**
+  String get mediaDesignCreative;
+
+  /// No description provided for @salesAndMarketing.
+  ///
+  /// In en, this message translates to:
+  /// **'Sales and Marketing'**
+  String get salesAndMarketing;
+
+  /// No description provided for @programming.
+  ///
+  /// In en, this message translates to:
+  /// **'Programming'**
+  String get programming;
+
+  /// No description provided for @writingAndContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Writing and Content'**
+  String get writingAndContent;
+
+  /// No description provided for @tailor.
+  ///
+  /// In en, this message translates to:
+  /// **'Tailor'**
+  String get tailor;
+
+  /// No description provided for @smmManager.
+  ///
+  /// In en, this message translates to:
+  /// **'SMM manager'**
+  String get smmManager;
+
+  /// No description provided for @hairdresser.
+  ///
+  /// In en, this message translates to:
+  /// **'Hairdresser'**
+  String get hairdresser;
+
+  /// No description provided for @driver.
+  ///
+  /// In en, this message translates to:
+  /// **'Driver'**
+  String get driver;
+
+  /// No description provided for @fillProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Fill your profile'**
+  String get fillProfile;
+
+  /// No description provided for @name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get name;
+
+  /// No description provided for @surname.
+  ///
+  /// In en, this message translates to:
+  /// **'Surname'**
+  String get surname;
+
+  /// No description provided for @birthday.
+  ///
+  /// In en, this message translates to:
+  /// **'Birthday'**
+  String get birthday;
+
+  /// No description provided for @gender.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get gender;
+
+  /// No description provided for @female.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get female;
+
+  /// No description provided for @male.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get male;
+
+  /// No description provided for @congratulations.
+  ///
+  /// In en, this message translates to:
+  /// **'Congratulations!'**
+  String get congratulations;
+
+  /// No description provided for @accountReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is ready to use,you will be redirected to Home page '**
+  String get accountReady;
+
+  /// No description provided for @ashgabat.
+  ///
+  /// In en, this message translates to:
+  /// **'Ashgabat'**
+  String get ashgabat;
+
+  /// No description provided for @balkan.
+  ///
+  /// In en, this message translates to:
+  /// **'Balkan'**
+  String get balkan;
+
+  /// No description provided for @ahal.
+  ///
+  /// In en, this message translates to:
+  /// **'Ahal'**
+  String get ahal;
+
+  /// No description provided for @mary.
+  ///
+  /// In en, this message translates to:
+  /// **'Mary'**
+  String get mary;
+
+  /// No description provided for @lebap.
+  ///
+  /// In en, this message translates to:
+  /// **'Lebap'**
+  String get lebap;
+
+  /// No description provided for @dashoguz.
+  ///
+  /// In en, this message translates to:
+  /// **'Dashoguz'**
+  String get dashoguz;
+
+  /// No description provided for @logIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in'**
+  String get logIn;
+
+  /// No description provided for @nothingFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing found'**
+  String get nothingFound;
+
+  /// No description provided for @all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get all;
+
+  /// No description provided for @neww.
+  ///
+  /// In en, this message translates to:
+  /// **'New'**
+  String get neww;
+
+  /// No description provided for @jobHasBeenUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Job has been updated'**
+  String get jobHasBeenUpdated;
+
+  /// No description provided for @december.
+  ///
+  /// In en, this message translates to:
+  /// **'December'**
+  String get december;
+
+  /// No description provided for @found.
+  ///
+  /// In en, this message translates to:
+  /// **'Found'**
+  String get found;
+
+  /// No description provided for @jobSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Job saved!'**
+  String get jobSaved;
+
+  /// No description provided for @removedFromSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed from saved!'**
+  String get removedFromSaved;
+
+  /// No description provided for @changeLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Change language'**
+  String get changeLanguage;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

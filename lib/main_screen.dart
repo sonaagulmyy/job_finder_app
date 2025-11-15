@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_finder/constants/app_colors.dart';
 import 'package:job_finder/home_page.dart';
+import 'package:job_finder/l10n/app_localizations.dart';
 import 'package:job_finder/profile_page.dart';
 import 'package:job_finder/saved_jobs.dart';
 
@@ -28,6 +29,7 @@ class _MainScreenState extends State<MainScreen> {
   }
   @override
   Widget build(BuildContext context) {
+    var lang=AppLocalizations.of(context)!;
     return Scaffold(
       body: pages[selectedIndex],
        bottomNavigationBar: BottomNavigationBar(
@@ -40,15 +42,15 @@ class _MainScreenState extends State<MainScreen> {
             items: [
               BottomNavigationBarItem(
                 icon: Icon(CupertinoIcons.home),
-                label: "Home",
+                label: lang.home,
               ),
               BottomNavigationBarItem(
                 icon: Icon(CupertinoIcons.bookmark),
-                label: "Saved",
+                label: lang.saved,
               ),
               BottomNavigationBarItem(
                 icon: Icon(CupertinoIcons.person),
-                label: "Profile",
+                label: lang.profile,
               ),
             ],
           ),

@@ -7,6 +7,7 @@ import 'package:job_finder/bloc/job_bloc/job_event.dart';
 import 'package:job_finder/bloc/job_bloc/job_state.dart';
 import 'package:job_finder/job_card.dart';
 import 'package:job_finder/job_card_skeleton.dart';
+import 'package:job_finder/l10n/app_localizations.dart';
 import 'package:job_finder/models/job_model.dart';
 
 class SeeAllJobsPage extends StatefulWidget {
@@ -41,6 +42,7 @@ class _SeeAllJobsPageState extends State<SeeAllJobsPage> {
 
   @override
   Widget build(BuildContext context) {
+    var lang=AppLocalizations.of(context)!;
     return BlocProvider(
       create: (context) => JobBloc()..add(LoadJobs()),
       child: Scaffold(
@@ -82,7 +84,7 @@ class _SeeAllJobsPageState extends State<SeeAllJobsPage> {
                 if (!_isSearching) filterJobs = List.from(allJobs);
               }
               if (_isSearching && filterJobs.isEmpty) {
-                return Center(child: Text("Nothing found"));
+                return Center(child: Text(lang.nothingFound));
               }
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,7 +94,7 @@ class _SeeAllJobsPageState extends State<SeeAllJobsPage> {
                     child: Row(
                       children: [
                         Text(
-                          filterJobs.length.toString(),
+                          filterJobs.length.toString() ,
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.grey,
@@ -100,8 +102,9 @@ class _SeeAllJobsPageState extends State<SeeAllJobsPage> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
+                        SizedBox(width: 2,),
                         Text(
-                          " Found",
+                          lang.found,
                           style: TextStyle(
                             color: Colors.grey,
                             fontSize: 14,

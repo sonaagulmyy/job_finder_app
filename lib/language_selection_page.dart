@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:job_finder/app_fonts.dart';
 import 'package:job_finder/cubit/language_cubit.dart';
+import 'package:job_finder/l10n/app_localizations.dart';
 
 class LanguageSelectionPage extends StatefulWidget {
   const LanguageSelectionPage({super.key});
@@ -14,10 +15,11 @@ class LanguageSelectionPage extends StatefulWidget {
 class _LanguageSelectionPageState extends State<LanguageSelectionPage> {
   @override
   Widget build(BuildContext context) {
+    var lang=AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Change language",
+          lang.changeLanguage,
           style: TextStyle(
             fontFamily: AppFonts.primaryFont,
             fontWeight: FontWeight.bold,

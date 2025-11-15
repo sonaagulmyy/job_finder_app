@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_finder/constants/app_colors.dart';
 import 'package:job_finder/app_fonts.dart';
+import 'package:job_finder/l10n/app_localizations.dart';
 import 'package:job_finder/select_experience_page.dart';
 
 class SelectJobtypePage extends StatefulWidget {
@@ -17,11 +18,12 @@ class _SelectJobtypePageState extends State<SelectJobtypePage> {
   int? _selectedIndex;
   @override
   Widget build(BuildContext context) {
+    var lang=AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "Select job type",
+          lang.selectJobType,
           style: TextStyle(
             fontFamily: AppFonts.primaryFont,
             fontWeight: FontWeight.bold,
@@ -33,7 +35,7 @@ class _SelectJobtypePageState extends State<SelectJobtypePage> {
           Padding(
             padding: const EdgeInsets.only(top: 200, right: 15),
             child: Text(
-              'Choose your job type',
+              lang.chooseYourJobType,
               style: TextStyle(fontSize: 24, fontFamily: AppFonts.poppinsBold),
             ),
           ),
@@ -41,7 +43,7 @@ class _SelectJobtypePageState extends State<SelectJobtypePage> {
           Padding(
             padding: const EdgeInsets.only(left: 25, right: 25),
             child: Text(
-              'Choose whether you are looking for a job or you are company needs employee',
+              lang.chooseJobExplanation,
               style: TextStyle(fontFamily: AppFonts.primaryFont, fontSize: 14),
               textAlign: TextAlign.center,
             ),
@@ -60,9 +62,9 @@ class _SelectJobtypePageState extends State<SelectJobtypePage> {
                     },
                     child: _buildSelectableBox(
                       isSelected: _selectedIndex == 0,
-                      label: "Find a job for you",
+                      label: lang.findAjobForYou,
                       icon: CupertinoIcons.briefcase,
-                      subTitle: "I want to find a job for me",
+                      subTitle: lang.wannaFindjob,
                     ),
                   ),
                 ),
@@ -76,9 +78,9 @@ class _SelectJobtypePageState extends State<SelectJobtypePage> {
                     },
                     child: _buildSelectableBox(
                       isSelected: _selectedIndex == 1,
-                      label: "Find an employee",
+                      label: lang.findAnEmployee,
                       icon: CupertinoIcons.person,
-                      subTitle: "I want to find an employee",
+                      subTitle: lang.wannaFindEmployee,
                     ),
                   ),
                 ),
@@ -105,7 +107,7 @@ class _SelectJobtypePageState extends State<SelectJobtypePage> {
                 ),
                 child: Center(
                   child: Text(
-                    "continue",
+                    lang.continuee,
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,
@@ -130,7 +132,7 @@ Widget _buildSelectableBox({
 }) {
   return AnimatedContainer(
     duration: Duration(milliseconds: 200),
-    height: 150,
+    height: 160,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(18),
       border: Border.all(

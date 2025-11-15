@@ -8,6 +8,7 @@ import 'package:job_finder/bloc/saved_jobs_bloc/saved_jobs_bloc.dart';
 import 'package:job_finder/constants/app_colors.dart';
 import 'package:job_finder/database/database_helper.dart';
 import 'package:job_finder/database/functions.dart';
+import 'package:job_finder/l10n/app_localizations.dart';
 import 'package:job_finder/models/job_model.dart';
 import 'package:provider/provider.dart';
 
@@ -50,6 +51,7 @@ class _JobDetailsState extends State<JobDetails> {
 
   @override
   Widget build(BuildContext context) {
+    var lang=AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -68,7 +70,7 @@ class _JobDetailsState extends State<JobDetails> {
                         backgroundColor: AppColors.backgroundColor.withOpacity(
                           0.5,
                         ),
-                        content: Text('Removed from saved!'),
+                        content: Text(lang.removedFromSaved),
                       ),
                     );
                   });
@@ -81,7 +83,7 @@ class _JobDetailsState extends State<JobDetails> {
                         backgroundColor: AppColors.backgroundColor.withOpacity(
                           0.5,
                         ),
-                        content: Text('Job saved!'),
+                        content: Text(lang.jobSaved),
                       ),
                     );
                   });

@@ -12,6 +12,7 @@ import 'package:job_finder/database/database_helper.dart';
 import 'package:job_finder/job_card.dart';
 import 'package:job_finder/job_card_skeleton.dart';
 import 'package:job_finder/job_details.dart';
+import 'package:job_finder/l10n/app_localizations.dart';
 import 'package:job_finder/models/job_model.dart';
 import 'package:job_finder/notifications_page.dart';
 import 'package:job_finder/see_all_jobs_page.dart';
@@ -28,19 +29,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   List<Job> allJobs = [];
   bool _isSearching = false;
   int selectedIndex = 0;
-  List<String> jobs = [
-    "All",
-    "Accounting and Finance",
-    "Graphic design",
-    "Media,Design,Creative",
-    "Sales and Marketing",
-    "Programming",
-    "Writing and Content",
-    "Tailor",
-    "SMM manager",
-    "Hairdresser",
-    "Driver",
-  ];
+
   @override
   void initState() {
     super.initState();
@@ -66,6 +55,20 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    var lang = AppLocalizations.of(context)!;
+    List<String> jobs = [
+      lang.all,
+      lang.accountingAndFinance,
+      lang.graphicDesign,
+      lang.mediaDesignCreative,
+      lang.salesAndMarketing,
+      lang.programming,
+      lang.writingAndContent,
+      lang.tailor,
+      lang.smmManager,
+      lang.hairdresser,
+      lang.driver,
+    ];
     return DefaultTabController(
       length: jobs.length,
       child: BlocProvider(
@@ -147,27 +150,28 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(height: 20,),
+                                SizedBox(height: 20),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 8),
                                   child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Welcome',
+                                        lang.welcome,
                                         style: TextStyle(
                                           fontFamily: AppFonts.primaryFont,
                                           color: Colors.white,
-                                          fontSize: 25,
+                                          fontSize: 23,
                                         ),
                                       ),
-                                      SizedBox(width: 10),
+                                      SizedBox(width: 5),
                                       Text(
-                                        "Maria!",
+                                        "Viktor!",
                                         style: TextStyle(
                                           fontFamily: AppFonts.primaryFont,
                                           color: Colors.white,
-                                          fontSize: 25,
+                                          fontSize: 23,
                                         ),
                                       ),
                                     ],
@@ -176,10 +180,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 Padding(
                                   padding: const EdgeInsets.only(
                                     top: 7,
-                                    left: 8
+                                    left: 8,
                                   ),
                                   child: Text(
-                                    "Let's find your dream job",
+                                    lang.letsFindYourDreamJob,
                                     style: TextStyle(
                                       fontFamily: AppFonts.primaryFont,
                                       color: Colors.white,
@@ -187,7 +191,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 20,),
+                                SizedBox(height: 20),
                                 Container(
                                   width: 450,
                                   height: 50,
@@ -232,7 +236,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         child: Row(
                           children: [
                             Text(
-                              "Recommendations",
+                              lang.recommendations,
                               style: TextStyle(
                                 fontFamily: AppFonts.primaryFont,
                                 fontWeight: FontWeight.bold,
@@ -254,7 +258,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 );
                               },
                               child: Text(
-                                "See all",
+                                lang.seeAll,
                                 style: TextStyle(
                                   fontFamily: AppFonts.primaryFont,
                                   color: AppColors.buttonColor,
@@ -269,51 +273,51 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       if (_isSearching && filteredJobs.isEmpty)
                         Center(
                           child: Text(
-                            "Nothing found",
+                            lang.nothingFound,
                             style: TextStyle(
                               fontSize: 18,
                               fontFamily: AppFonts.primaryFont,
                               fontWeight: FontWeight.bold,
-                              color: Colors.grey
+                              color: Colors.grey,
                             ),
                           ),
                         )
                       else
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: filteredJobs
-                              .take(5)
-                              .map(
-                                (job) => Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        CupertinoPageRoute(
-                                          builder: (context) =>
-                                              JobDetails(job: job),
-                                        ),
-                                      );
-                                    },
-                                    child: JobCard(
-                                      job: job,
-                                      logoColor: Colors.red,
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: filteredJobs
+                                .take(5)
+                                .map(
+                                  (job) => Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          CupertinoPageRoute(
+                                            builder: (context) =>
+                                                JobDetails(job: job),
+                                          ),
+                                        );
+                                      },
+                                      child: JobCard(
+                                        job: job,
+                                        logoColor: Colors.red,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              )
-                              .toList(),
+                                )
+                                .toList(),
+                          ),
                         ),
-                      ),
                       SizedBox(height: 15),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 12),
                         child: Row(
                           children: [
                             Text(
-                              "Recent job",
+                              lang.recentJob,
                               style: TextStyle(
                                 fontFamily: AppFonts.primaryFont,
                                 fontWeight: FontWeight.bold,
@@ -334,7 +338,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 );
                               },
                               child: Text(
-                                "See all",
+                                lang.seeAll,
                                 style: TextStyle(
                                   fontFamily: AppFonts.primaryFont,
                                   color: AppColors.buttonColor,
@@ -400,12 +404,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           height: 300,
                           alignment: Alignment.center,
                           child: Text(
-                            "Nothing found",
-                            style:  TextStyle(
+                            lang.nothingFound,
+                            style: TextStyle(
                               fontSize: 18,
                               fontFamily: AppFonts.primaryFont,
                               fontWeight: FontWeight.bold,
-                              color: Colors.grey
+                              color: Colors.grey,
                             ),
                           ),
                         )

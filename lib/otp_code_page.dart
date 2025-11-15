@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_finder/app_fonts.dart';
 import 'package:job_finder/constants/app_colors.dart';
+import 'package:job_finder/l10n/app_localizations.dart';
 import 'package:job_finder/select_region_page.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -45,6 +46,7 @@ class _OtpCodePageState extends State<OtpCodePage> {
 
   @override
   Widget build(BuildContext context) {
+    var lang=AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -52,7 +54,7 @@ class _OtpCodePageState extends State<OtpCodePage> {
         child: Column(
           children: [
             Text(
-              "Type the code",
+              lang.typeTheCode,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
@@ -61,7 +63,7 @@ class _OtpCodePageState extends State<OtpCodePage> {
             ),
             SizedBox(height: 5),
             Text(
-              "Send the code ${widget.number} ",
+              "${lang.sentTheCode} ${widget.number} ",
               style: TextStyle(
                 fontSize: 16,
                 fontFamily: AppFonts.primaryFont,
@@ -92,7 +94,7 @@ class _OtpCodePageState extends State<OtpCodePage> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "Resend the code",
+                  lang.resendTheCode,
                   style: TextStyle(fontFamily: AppFonts.primaryFont),
                 ),
                 SizedBox(width: 3),
@@ -103,7 +105,7 @@ class _OtpCodePageState extends State<OtpCodePage> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 70,left: 70,top: 60),
+              padding: const EdgeInsets.only(right: 60,left: 60,top: 60),
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -114,14 +116,15 @@ class _OtpCodePageState extends State<OtpCodePage> {
                   );
                 },
                 child: Container(
-                  height: 50,
+                  height: 60,
+                  width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     gradient: AppColors.appGradient,
                   ),
                   child: Center(
                     child: Text(
-                      "Log in",
+                      lang.logIn,
                       style: TextStyle(
                         color: Colors.white,
                         fontFamily: AppFonts.primaryFont,

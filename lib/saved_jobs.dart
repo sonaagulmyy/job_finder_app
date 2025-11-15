@@ -8,19 +8,21 @@ import 'package:job_finder/bloc/saved_jobs_bloc/saved_jobs_event.dart';
 import 'package:job_finder/bloc/saved_jobs_bloc/saved_jobs_state.dart';
 import 'package:job_finder/constants/app_colors.dart';
 import 'package:job_finder/database/database_helper.dart';
+import 'package:job_finder/l10n/app_localizations.dart';
 
 class SavedJobs extends StatelessWidget {
   const SavedJobs({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var lang=AppLocalizations.of(context)!;
     return BlocProvider(
       create: (context) =>
           SavedJobsBloc(DatabaseHelper.instance)..add(LoadSavedJobs()),
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            "Saved",
+            lang.saved,
             style: TextStyle(
               fontFamily: AppFonts.primaryFont,
               fontWeight: FontWeight.bold,
@@ -36,7 +38,7 @@ class SavedJobs extends StatelessWidget {
             }
             if (state is SavedJobsLoaded) {
               if (state.jobs.isEmpty) {
-                return Center(child: Text("No saved jobs",style: TextStyle(fontFamily: AppFonts.primaryFont,fontSize: 20),));
+                return Center(child: Text(lang.noSavedJobs,style: TextStyle(fontFamily: AppFonts.primaryFont,fontSize: 20),));
               }
               return ListView.builder(
                 itemCount: state.jobs.length,

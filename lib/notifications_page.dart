@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:job_finder/app_fonts.dart';
 import 'package:job_finder/constants/app_colors.dart';
+import 'package:job_finder/l10n/app_localizations.dart';
 
 class NotificationsPage extends StatefulWidget {
   const NotificationsPage({super.key});
@@ -14,10 +15,11 @@ class NotificationsPage extends StatefulWidget {
 class _NotificationsPageState extends State<NotificationsPage> {
   @override
   Widget build(BuildContext context) {
+    var lang=AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Notifications",
+          lang.notifications,
           style: TextStyle(
             fontFamily: AppFonts.primaryFont,
             fontWeight: FontWeight.bold,
@@ -35,7 +37,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                 Row(
                   children: [
                     Text(
-                      "Job has been updated",
+                      lang.jobHasBeenUpdated,
                       style: TextStyle(
                         fontFamily: AppFonts.poppinsBold,
                         fontSize: 18,
@@ -51,7 +53,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                       ),
                       child: Center(
                         child: Text(
-                          "New",
+                          lang.neww,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 14,
@@ -64,7 +66,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                   ],
                 ),
                 Text(
-                  "20 December 2025 | 20:12",
+                  "20 ${lang.december} 2025 | 20:12",
                   style: TextStyle(
                     fontFamily: AppFonts.primaryFont,
                     color: Colors.grey,

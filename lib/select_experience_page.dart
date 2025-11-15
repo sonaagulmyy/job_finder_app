@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:job_finder/constants/app_colors.dart';
 import 'package:job_finder/app_fonts.dart';
 import 'package:job_finder/fill_profile_info_page.dart';
+import 'package:job_finder/l10n/app_localizations.dart';
 
 class SelectExperiencePage extends StatefulWidget {
   const SelectExperiencePage({super.key});
@@ -27,11 +28,24 @@ class _SelectExperiencePageState extends State<SelectExperiencePage> {
   List<String> selectedJobs = [];
   @override
   Widget build(BuildContext context) {
+    var lang=AppLocalizations.of(context)!;
+     List<String> jobs = [
+    lang.accountingAndFinance,
+    lang.graphicDesign,
+    lang.mediaDesignCreative,
+    lang.salesAndMarketing,
+    lang.programming,
+    lang.writingAndContent,
+    lang.tailor,
+    lang.smmManager,
+    lang.hairdresser,
+    lang.driver,
+  ];
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "Select your experience",
+          lang.selectYourExperience,
           style: TextStyle(
             fontFamily: AppFonts.primaryFont,
             fontWeight: FontWeight.bold,
@@ -88,7 +102,7 @@ class _SelectExperiencePageState extends State<SelectExperiencePage> {
                   ),
                   child: Center(
                     child: Text(
-                      "continue",
+                      lang.continuee,
                       style: TextStyle(
                         fontSize: 20,
                         color: Colors.white,

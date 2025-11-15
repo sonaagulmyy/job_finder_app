@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_finder/constants/app_colors.dart';
 import 'package:job_finder/app_fonts.dart';
+import 'package:job_finder/l10n/app_localizations.dart';
 import 'package:job_finder/select_region_page.dart';
 import 'package:job_finder/sign_up_page.dart';
 
@@ -20,15 +21,16 @@ class _LogInPageState extends State<LogInPage> {
   bool _isVisible = false;
   @override
   Widget build(BuildContext context) {
+    var lang=AppLocalizations.of(context)!;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 250, right: 10),
+              padding: const EdgeInsets.only(top: 250,right: 10),
               child: Text(
-                "Let's jump in",
+                lang.letsJumpIn,
                 style: TextStyle(
                   color: AppColors.textColor,
                   fontFamily: AppFonts.poppinsBold,
@@ -64,7 +66,7 @@ class _LogInPageState extends State<LogInPage> {
                 controller: password,
                 obscureText: !_isVisible,
                 decoration: InputDecoration(
-                  label: Text("Password"),
+                  label: Text(lang.password),
                   labelStyle: TextStyle(
                     fontFamily: AppFonts.primaryFont,
                     color: Colors.grey[700],
@@ -109,7 +111,7 @@ class _LogInPageState extends State<LogInPage> {
                   ),
                   child: Center(
                     child: Text(
-                      "Sign in",
+                      lang.signIn,
                       style: TextStyle(
                         color: Colors.white,
                         fontFamily: AppFonts.primaryFont,
@@ -121,33 +123,31 @@ class _LogInPageState extends State<LogInPage> {
               ),
             ),
             SizedBox(height: 15),
-            Padding(
-              padding: EdgeInsets.only(left: 70),
-              child: Row(
-                children: [
-                  Text(
-                    'Don\'t have an account?',
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  lang.dontHaveAnAccount,
+                  style: TextStyle(
+                    fontFamily: AppFonts.primaryFont,
+                    fontSize: 16,
+                  ),
+                ),
+                SizedBox(width: 5),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context, CupertinoPageRoute(builder: (context)=>SignUpPage()));
+                  },
+                  child: Text(
+                    lang.signUp,
                     style: TextStyle(
+                      color: AppColors.textColor,
                       fontFamily: AppFonts.primaryFont,
                       fontSize: 16,
                     ),
                   ),
-                  SizedBox(width: 5),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(context, CupertinoPageRoute(builder: (context)=>SignUpPage()));
-                    },
-                    child: Text(
-                      'Sign up',
-                      style: TextStyle(
-                        color: AppColors.textColor,
-                        fontFamily: AppFonts.primaryFont,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ],
         ),
