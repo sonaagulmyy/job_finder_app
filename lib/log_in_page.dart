@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_finder/constants/app_colors.dart';
 import 'package:job_finder/app_fonts.dart';
+import 'package:job_finder/database/database_helper.dart';
+import 'package:job_finder/functions/crypto.dart';
 import 'package:job_finder/l10n/app_localizations.dart';
 import 'package:job_finder/select_region_page.dart';
 import 'package:job_finder/sign_up_page.dart';
@@ -21,14 +23,14 @@ class _LogInPageState extends State<LogInPage> {
   bool _isVisible = false;
   @override
   Widget build(BuildContext context) {
-    var lang=AppLocalizations.of(context)!;
+    var lang = AppLocalizations.of(context)!;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 250,right: 10),
+              padding: const EdgeInsets.only(top: 250, right: 10),
               child: Text(
                 lang.letsJumpIn,
                 style: TextStyle(
@@ -77,7 +79,9 @@ class _LogInPageState extends State<LogInPage> {
                   ),
                   suffixIcon: IconButton(
                     icon: Icon(
-                      _isVisible ? Icons.visibility_rounded : Icons.visibility_off,
+                      _isVisible
+                          ? Icons.visibility_rounded
+                          : Icons.visibility_off,
                     ),
                     onPressed: () {
                       setState(() {
@@ -99,23 +103,61 @@ class _LogInPageState extends State<LogInPage> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    CupertinoPageRoute(builder: (context) => SelectRegionPage()),
+                    CupertinoPageRoute(
+                      builder: (context) => SelectRegionPage(),
+                    ),
                   );
                 },
-                child: Container(
-                  width: double.infinity,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    gradient: AppColors.appGradient,
-                  ),
-                  child: Center(
-                    child: Text(
-                      lang.signIn,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: AppFonts.primaryFont,
-                        fontSize: 18,
+                child: GestureDetector(
+                  onTap: () async {
+                    final phone = number.text.trim();
+                    final pass = password.text.trim();
+
+                    if (phone.isEmpty || pass.isEmpty) return;
+
+                    final user = await DatabaseHelper.getUser(phone);
+
+                    if (user == null) {
+                      ScaffoldMessenger.of(
+                        context,
+                      ).showSnackBar(SnackBar(
+                        backgroundColor: AppColors.backgroundColor.withOpacity(0.5),
+                        content: Text("User not found")));
+                      return;
+                    }
+
+                    final inputHash = hashPassword(pass);
+
+                    if (inputHash == user['passwordHash']) {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => SelectRegionPage(),
+                        ),
+                      );
+                    } else {
+                      ScaffoldMessenger.of(
+                        context,
+                      ).showSnackBar(SnackBar(
+                        backgroundColor: AppColors.backgroundColor.withOpacity(0.5),
+                        content: Text("Wrong password")));
+                    }
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      gradient: AppColors.appGradient,
+                    ),
+                    child: Center(
+                      child: Text(
+                        lang.signIn,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: AppFonts.primaryFont,
+                          fontSize: 18,
+                        ),
                       ),
                     ),
                   ),
@@ -136,7 +178,10 @@ class _LogInPageState extends State<LogInPage> {
                 SizedBox(width: 5),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(context, CupertinoPageRoute(builder: (context)=>SignUpPage()));
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(builder: (context) => SignUpPage()),
+                    );
                   },
                   child: Text(
                     lang.signUp,

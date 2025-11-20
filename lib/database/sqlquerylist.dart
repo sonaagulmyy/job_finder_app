@@ -8,3 +8,12 @@ CREATE TABLE savedJobs (
   salaryMax INTEGER
 );
 ''';
+
+String createUsersTable = '''
+CREATE TABLE users(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  phone TEXT UNIQUE,
+  passwordHash TEXT
+);
+''';
+

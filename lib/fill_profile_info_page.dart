@@ -217,7 +217,7 @@ class _FillProfileInfoPageState extends State<FillProfileInfoPage> {
                       barrierDismissible: false, 
                       barrierColor: Colors.transparent.withOpacity(0.5),
                       builder: (context) {
-                        Future.delayed(Duration(seconds: 3), () {
+                        Future.delayed(Duration(seconds: 2), () {
                           Navigator.of(context).pop(); 
                           Navigator.pushReplacement(
                             context,

@@ -52,6 +52,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   flutter_native_splash: ^2.4.7
   flutter_launcher_icons: ^0.14.4
+  crypto: ^3.0.7
 
 dev_dependencies:
   flutter_test:

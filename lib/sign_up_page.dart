@@ -1,7 +1,11 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_finder/app_fonts.dart';
 import 'package:job_finder/constants/app_colors.dart';
+import 'package:job_finder/database/database_helper.dart';
+import 'package:job_finder/functions/crypto.dart';
 import 'package:job_finder/l10n/app_localizations.dart';
 import 'package:job_finder/otp_code_page.dart';
 
@@ -28,7 +32,7 @@ class _SignUpPageState extends State<SignUpPage>
 
   @override
   Widget build(BuildContext context) {
-    var lang=AppLocalizations.of(context)!;
+    var lang = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
@@ -36,9 +40,9 @@ class _SignUpPageState extends State<SignUpPage>
           padding: const EdgeInsets.only(bottom: 20),
           child: Column(
             children: [
-              SizedBox(height: 60,),
+              SizedBox(height: 60),
               Padding(
-                padding: const EdgeInsets.only( right: 20),
+                padding: const EdgeInsets.only(right: 20),
                 child: Text(
                   lang.signUp,
                   style: TextStyle(
@@ -74,10 +78,16 @@ class _SignUpPageState extends State<SignUpPage>
                     ),
                     tabs: [
                       Tab(
-                        child: Text(lang.phone, style: TextStyle(letterSpacing: 0.5)),
+                        child: Text(
+                          lang.phone,
+                          style: TextStyle(letterSpacing: 0.5),
+                        ),
                       ),
                       Tab(
-                        child: Text(lang.email, style: TextStyle(letterSpacing: 0.5)),
+                        child: Text(
+                          lang.email,
+                          style: TextStyle(letterSpacing: 0.5),
+                        ),
                       ),
                     ],
                   ),
@@ -243,28 +253,48 @@ class _SignUpPageState extends State<SignUpPage>
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 70, right: 70,top: 20),
+                padding: EdgeInsets.only(left: 70, right: 70, top: 20),
                 child: GestureDetector(
                   onTap: () {
                     Navigator.push(
                       context,
-                      CupertinoPageRoute(builder: (context) => OtpCodePage(number: number.text)),
+                      CupertinoPageRoute(
+                        builder: (context) => OtpCodePage(number: number.text),
+                      ),
                     );
                   },
-                  child: Container(
-                    width: double.infinity,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      gradient: AppColors.appGradient,
-                    ),
-                    child: Center(
-                      child: Text(
-                        lang.signUp,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: AppFonts.primaryFont,
-                          fontSize: 18,
+                  child: GestureDetector(
+                    onTap: () async {
+                      final phone = number.text.trim();
+                      final pass = password.text.trim();
+
+                      if (phone.isEmpty || pass.isEmpty) return;
+
+                      final hash = hashPassword(pass);
+                      await DatabaseHelper.insertUser(phone, hash);
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          backgroundColor:AppColors.backgroundColor.withOpacity(0.5),
+                          content: Text("User registered successfully")),
+                      );
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        gradient: AppColors.appGradient,
+                      ),
+                      child: Center(
+                        child: Text(
+                          lang.signUp,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: AppFonts.primaryFont,
+                            fontSize: 18,
+                          ),
                         ),
                       ),
                     ),
