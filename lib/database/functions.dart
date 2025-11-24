@@ -32,6 +32,19 @@ Future<List<SavedJobModel>> getSavedJobs() async {
 }
 
 
+Future<bool> userExists(String phone) async {
+  final db = await DatabaseHelper.instance.database;
+
+  final result = await db.query(
+    'users',
+    where: 'phone = ?',
+    whereArgs: [phone],
+  );
+
+  return result.isNotEmpty; 
+}
+
+
 
 
 

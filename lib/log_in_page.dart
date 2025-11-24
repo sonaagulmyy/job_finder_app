@@ -122,7 +122,7 @@ class _LogInPageState extends State<LogInPage> {
                         context,
                       ).showSnackBar(SnackBar(
                         backgroundColor: AppColors.backgroundColor.withOpacity(0.5),
-                        content: Text("User not found")));
+                        content: Text("User not found, sign up first")));
                       return;
                     }
 

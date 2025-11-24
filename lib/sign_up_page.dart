@@ -7,6 +7,7 @@ import 'package:job_finder/constants/app_colors.dart';
 import 'package:job_finder/database/database_helper.dart';
 import 'package:job_finder/functions/crypto.dart';
 import 'package:job_finder/l10n/app_localizations.dart';
+import 'package:job_finder/log_in_page.dart';
 import 'package:job_finder/otp_code_page.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -273,12 +274,28 @@ class _SignUpPageState extends State<SignUpPage>
                       final hash = hashPassword(pass);
                       await DatabaseHelper.insertUser(phone, hash);
 
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          backgroundColor:AppColors.backgroundColor.withOpacity(0.5),
-                          content: Text("User registered successfully")),
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            backgroundColor: Colors.grey[300],
+                            title: Text(
+                              "You have been registered successfully",
+                              style: TextStyle(
+                                fontFamily: AppFonts.primaryFont,
+                              ),
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                 Navigator.push(context,CupertinoPageRoute(builder: (context)=>LogInPage()));
+                                },
+                                child: Text('Okay'),
+                              ),
+                            ],
+                          );
+                        },
                       );
-                      Navigator.pop(context);
                     },
                     child: Container(
                       width: double.infinity,
