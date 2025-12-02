@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:job_finder/app_fonts.dart';
 import 'package:job_finder/constants/app_colors.dart';
 import 'package:job_finder/database/functions.dart';
-import 'package:job_finder/l10n/app_localizations.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

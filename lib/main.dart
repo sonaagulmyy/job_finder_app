@@ -21,10 +21,10 @@ void main() {
         ),
         BlocProvider(create: (context) => LanguageCubit()),
        ],
-      // // child: DevicePreview(
-      // //   enabled: !kReleaseMode,
-      // //   builder: (context) => MyApp(),
-      // // ),
+      // child: DevicePreview(
+      //   enabled: !kReleaseMode,
+      //   builder: (context) => MyApp(),
+      // ),
       child: MyApp(),
     ),
   );
