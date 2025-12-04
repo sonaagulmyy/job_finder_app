@@ -8,6 +8,7 @@ import 'package:job_finder/bloc/saved_jobs_bloc/saved_jobs_bloc.dart';
 import 'package:job_finder/constants/app_colors.dart';
 import 'package:job_finder/database/database_helper.dart';
 import 'package:job_finder/database/functions.dart';
+import 'package:job_finder/job_apply_page.dart';
 import 'package:job_finder/l10n/app_localizations.dart';
 import 'package:job_finder/models/job_model.dart';
 import 'package:provider/provider.dart';
@@ -275,22 +276,27 @@ class _JobDetailsState extends State<JobDetails> {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
-            child: Container(
-              height: 50,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                gradient: AppColors.appGradient,
-              ),
-              child: Center(
-                child: Text(
-                  "Apply",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontFamily: AppFonts.primaryFont,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context, CupertinoPageRoute(builder: (context)=>JobApplyPage(job: widget.job,)));
+            },
+            child: Padding(
+              padding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+              child: Container(
+                height: 50,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  gradient: AppColors.appGradient,
+                ),
+                child: Center(
+                  child: Text(
+                    "Apply",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontFamily: AppFonts.primaryFont,
+                    ),
                   ),
                 ),
               ),

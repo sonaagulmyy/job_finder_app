@@ -69,5 +69,6 @@
   "found": "Found",
   "jobSaved": "Job saved!",
   "removedFromSaved": "Removed from saved!",
-  "changeLanguage": "Change language"
+  "changeLanguage": "Change language",
+  "location":"Location"
 }

@@ -15,7 +15,9 @@ import 'package:job_finder/job_details.dart';
 import 'package:job_finder/l10n/app_localizations.dart';
 import 'package:job_finder/models/job_model.dart';
 import 'package:job_finder/notifications_page.dart';
+import 'package:job_finder/providers/selected_region_provider.dart';
 import 'package:job_finder/see_all_jobs_page.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -29,6 +31,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   List<Job> allJobs = [];
   bool _isSearching = false;
   int selectedIndex = 0;
+  String? selectedvalue = 'Ashgabat';
 
   @override
   void initState() {
@@ -153,77 +156,237 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 SizedBox(height: 20),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 8),
+                                  child: Text(
+                                    "Location",
+                                    style: TextStyle(
+                                      fontFamily: AppFonts.primaryFont,
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 5),
                                   child: Row(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                        CrossAxisAlignment.center,
                                     children: [
-                                      Text(
-                                        lang.welcome,
-                                        style: TextStyle(
-                                          fontFamily: AppFonts.primaryFont,
-                                          color: Colors.white,
-                                          fontSize: 23,
-                                        ),
+                                      Icon(
+                                        Icons.location_pin,
+                                        color: Colors.white,
+                                        size: 30,
                                       ),
-                                      SizedBox(width: 5),
-                                      Text(
-                                        "Viktor!",
-                                        style: TextStyle(
-                                          fontFamily: AppFonts.primaryFont,
-                                          color: Colors.white,
-                                          fontSize: 23,
+                                      DropdownButtonHideUnderline(
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: 10,
+                                          ),
+                                          height: 40,
+
+                                          // child: DropdownButton<String>(
+                                          //   value: selectedvalue,
+                                          //   dropdownColor: Colors.white,
+                                          //   alignment: Alignment.centerLeft,
+
+                                          //   icon: Icon(
+                                          //     Icons.keyboard_arrow_down_sharp,
+                                          //     color: Colors.white,
+                                          //   ),
+                                          //   selectedItemBuilder: (context) {
+                                          //     return [
+                                          //       lang.ashgabat,
+                                          //       lang.balkan,
+                                          //       lang.ahal,
+                                          //       lang.mary,
+                                          //       lang.dashoguz,
+                                          //       lang.lebap,
+                                          //     ].map((e) {
+                                          //       return Align(
+                                          //         alignment:
+                                          //             Alignment.centerLeft,
+                                          //         child: Text(
+                                          //           e,
+                                          //           style: TextStyle(
+                                          //             color: Colors.white,
+                                          //             fontFamily:
+                                          //                 AppFonts.primaryFont,
+                                          //             fontWeight:
+                                          //                 FontWeight.bold,
+                                          //             fontSize: 24,
+                                          //           ),
+                                          //         ),
+                                          //       );
+                                          //     }).toList();
+                                          //   },
+
+                                          //   items: [
+                                          //     DropdownMenuItem(
+                                          //       value: 'Ashgabat',
+                                          //       child: Text(lang.ashgabat),
+                                          //     ),
+                                          //     DropdownMenuItem(
+                                          //       value: 'Balkan',
+                                          //       child: Text(lang.balkan),
+                                          //     ),
+                                          //     DropdownMenuItem(
+                                          //       value: 'Ahal',
+                                          //       child: Text(lang.ahal),
+                                          //     ),
+                                          //     DropdownMenuItem(
+                                          //       value: 'Mary',
+                                          //       child: Text(lang.mary),
+                                          //     ),
+                                          //     DropdownMenuItem(
+                                          //       value: 'Dashoguz',
+                                          //       child: Text(lang.dashoguz),
+                                          //     ),
+                                          //     DropdownMenuItem(
+                                          //       value: 'Lebap',
+                                          //       child: Text(lang.lebap),
+                                          //     ),
+                                          //   ],
+
+                                          //   onChanged: (value) => setState(
+                                          //     () => selectedvalue = value,
+                                          //   ),
+                                          // ),
+                                          child: Consumer<SelectedRegionProvider>(
+                                            builder: (context, regionprovider, child) {
+                                              return DropdownButton<String>(
+                                                value: regionprovider.selected,
+                                                dropdownColor: Colors.white,
+                                                alignment: Alignment.centerLeft,
+
+                                                icon: Icon(
+                                                  Icons
+                                                      .keyboard_arrow_down_sharp,
+                                                  color: Colors.white,
+                                                ),
+                                                selectedItemBuilder: (context) {
+                                                  return [
+                                                    lang.ashgabat,
+                                                    lang.balkan,
+                                                    lang.ahal,
+                                                    lang.mary,
+                                                    lang.dashoguz,
+                                                    lang.lebap,
+                                                  ].map((e) {
+                                                    return Align(
+                                                      alignment:
+                                                          Alignment.centerLeft,
+                                                      child: Text(
+                                                        e,
+                                                        style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontFamily: AppFonts
+                                                              .primaryFont,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 24,
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }).toList();
+                                                },
+
+                                                items: [
+                                                  DropdownMenuItem(
+                                                    value: 'Ashgabat',
+                                                    child: Text(lang.ashgabat),
+                                                  ),
+                                                  DropdownMenuItem(
+                                                    value: 'Balkan',
+                                                    child: Text(lang.balkan),
+                                                  ),
+                                                  DropdownMenuItem(
+                                                    value: 'Ahal',
+                                                    child: Text(lang.ahal),
+                                                  ),
+                                                  DropdownMenuItem(
+                                                    value: 'Mary',
+                                                    child: Text(lang.mary),
+                                                  ),
+                                                  DropdownMenuItem(
+                                                    value: 'Dashoguz',
+                                                    child: Text(lang.dashoguz),
+                                                  ),
+                                                  DropdownMenuItem(
+                                                    value: 'Lebap',
+                                                    child: Text(lang.lebap),
+                                                  ),
+                                                ],
+                                                onChanged: (value) {
+                                                  if (value != null) {
+                                                    regionprovider.setRegion(
+                                                      value,
+                                                    );
+                                                  }
+                                                },
+                                              );
+                                            },
+                                          ),
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    top: 7,
-                                    left: 8,
-                                  ),
-                                  child: Text(
-                                    lang.letsFindYourDreamJob,
-                                    style: TextStyle(
-                                      fontFamily: AppFonts.primaryFont,
-                                      color: Colors.white,
-                                      fontSize: 16,
+                                SizedBox(height: 10),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        width: 240,
+                                        height: 50,
+                                        margin: EdgeInsets.symmetric(
+                                          horizontal: 8,
+                                          vertical: 0,
+                                        ),
+                                        child: CupertinoSearchTextField(
+                                          borderRadius: BorderRadius.circular(
+                                            14,
+                                          ),
+                                          backgroundColor: Colors.white,
+                                          style: TextStyle(
+                                            fontFamily: AppFonts.primaryFont,
+                                          ),
+                                          padding: EdgeInsets.symmetric(
+                                            vertical: 6,
+                                            horizontal: 12,
+                                          ),
+                                          prefixIcon: Padding(
+                                            padding: EdgeInsets.all(4),
+                                            child: Icon(Icons.search),
+                                          ),
+                                          onChanged: (value) {
+                                            _isSearching = value
+                                                .trim()
+                                                .isNotEmpty;
+                                            if (_isSearching) {
+                                              filterJobs(value);
+                                            } else {
+                                              setState(() {
+                                                filteredJobs = List.from(
+                                                  allJobs,
+                                                );
+                                              });
+                                            }
+                                          },
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                ),
-                                SizedBox(height: 20),
-                                Container(
-                                  width: 450,
-                                  height: 50,
-                                  margin: EdgeInsets.symmetric(
-                                    horizontal: 8,
-                                    vertical: 0,
-                                  ),
-                                  child: CupertinoSearchTextField(
-                                    borderRadius: BorderRadius.circular(20),
-                                    backgroundColor: Colors.white,
-                                    style: TextStyle(
-                                      fontFamily: AppFonts.primaryFont,
+                                    Container(
+                                      height: 50,
+                                      width: 50,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(14),
+                                        color: Colors.white,
+                                      ),
+                                      child: Icon(
+                                        Icons.tune_rounded,
+                                        color: Colors.black.withOpacity(0.5),
+                                      ),
                                     ),
-                                    padding: EdgeInsets.symmetric(
-                                      vertical: 6,
-                                      horizontal: 12,
-                                    ),
-                                    prefixIcon: Padding(
-                                      padding: EdgeInsets.all(4),
-                                      child: Icon(Icons.search),
-                                    ),
-                                    onChanged: (value) {
-                                      _isSearching = value.trim().isNotEmpty;
-                                      if (_isSearching) {
-                                        filterJobs(value);
-                                      } else {
-                                        setState(() {
-                                          filteredJobs = List.from(allJobs);
-                                        });
-                                      }
-                                    },
-                                  ),
+                                  ],
                                 ),
                               ],
                             ),
@@ -389,6 +552,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontFamily: AppFonts.primaryFont,
+                                      color: isSelected
+                                          ? Colors.white
+                                          : Colors.black,
                                       fontSize: 14,
                                     ),
                                   ),

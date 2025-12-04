@@ -220,4 +220,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get changeLanguage => 'Изменить язык';
+
+  @override
+  String get location => 'Расположение';
 }

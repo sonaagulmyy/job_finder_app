@@ -220,4 +220,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get changeLanguage => 'Dil üýtgetmek';
+
+  @override
+  String get location => 'Ýeri';
 }

@@ -69,5 +69,6 @@
   "found": "найдено",
   "jobSaved": "Работа сохранена!",
   "removedFromSaved": "Удалено из сохраненных!",
-  "changeLanguage": "Изменить язык"
+  "changeLanguage": "Изменить язык",
+  "location":"Расположение"
 }

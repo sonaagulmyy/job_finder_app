@@ -1,3 +1,5 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +9,7 @@ import 'package:job_finder/cubit/language_cubit.dart';
 import 'package:job_finder/database/database_helper.dart';
 import 'package:job_finder/l10n/app_localizations.dart';
 import 'package:job_finder/log_in_page.dart';
+import 'package:job_finder/providers/selected_region_provider.dart';
 import 'package:job_finder/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -15,17 +18,18 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
+        ChangeNotifierProvider(create: (context)=>SelectedRegionProvider()),
         BlocProvider(
           create: (context) =>
               SavedJobsBloc(DatabaseHelper.instance)..add(LoadSavedJobs()),
         ),
         BlocProvider(create: (context) => LanguageCubit()),
        ],
-      // child: DevicePreview(
-      //   enabled: !kReleaseMode,
-      //   builder: (context) => MyApp(),
-      // ),
-      child: MyApp(),
+      child: DevicePreview(
+        enabled: !kReleaseMode,
+        builder: (context) => MyApp(),
+      ),
+      // child: MyApp(),
     ),
   );
 }

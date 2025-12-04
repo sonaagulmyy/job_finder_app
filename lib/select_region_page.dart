@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:job_finder/constants/app_colors.dart';
 import 'package:job_finder/app_fonts.dart';
 import 'package:job_finder/l10n/app_localizations.dart';
+import 'package:job_finder/providers/selected_region_provider.dart';
 import 'package:job_finder/select_jobtype_page.dart';
+import 'package:provider/provider.dart';
 
 class SelectRegionPage extends StatefulWidget {
   const SelectRegionPage({super.key});
@@ -186,12 +188,15 @@ class _SelectRegionPageState extends State<SelectRegionPage> {
             padding: EdgeInsetsGeometry.only(left: 70, right: 70,top: 40),
             child: GestureDetector(
               onTap: () {
-                Navigator.push(
+                if(selectedRegion!=null){
+                  Provider.of<SelectedRegionProvider>(context,listen:false).setRegion(selectedRegion!);
+                  Navigator.push(
                   context,
                   CupertinoPageRoute(
                     builder: (context) => SelectJobtypePage(),
                   ),
                 );
+                }
               },
               child: Container(
                 width: double.infinity,
