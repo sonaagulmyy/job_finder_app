@@ -64,7 +64,7 @@ class SettingsPage extends StatelessWidget {
               ),
             ),
             trailing:Switch(
-                activeColor: Colors.white,
+                activeThumbColor: Colors.white,
                 value: themeProvider.isDarkMode,
                 onChanged: (value) {
                   themeProvider.toggleTheme(value);
